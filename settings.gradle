@@ -1,0 +1,2 @@
+rootProject.name = 'bundles'
+include 'dsls:kpoi:dsl', 'dsls:kpoi:client', 'tutorials:kt:oop'
