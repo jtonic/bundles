@@ -21,11 +21,17 @@ subprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             suppressWarnings = true
+            languageVersion = "1.1"
+            apiVersion = "1.1"
+            jvmTarget = "1.8"
+            javaParameters = true
+            incremental = true
         }
         dependencies {
             "compile"(kotlin("stdlib-jre8", kotlinVersion))
             "testCompile"("junit:junit:4.12")
             "testCompile"("io.kotlintest:kotlintest:2.0.7")
+            "compile"("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
         }
     }
 }
