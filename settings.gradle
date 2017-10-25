@@ -1,2 +1,2 @@
 rootProject.name = 'bundles'
-include 'dsls:kpoi:dsl', 'dsls:kpoi:client', 'tutorials:kt:oop', 'tutorials:kt:model'
+include 'dsls:kpoi:dsl', 'dsls:kpoi:client', 'tutorials:kt:oop', 'tutorials:kt:model', 'springbapp'
