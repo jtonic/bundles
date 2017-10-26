@@ -15,6 +15,10 @@ buildscript {
     }
 }
 
+plugins {
+    application
+}
+
 apply {
     plugin("org.springframework.boot")
     plugin("kotlin-spring")
@@ -22,11 +26,18 @@ apply {
     plugin("io.spring.dependency-management")
 }
 
+application {
+    mainClassName = "ro.jtonic.handson.springbapp.Application"
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    "compile"("org.springframework.boot:spring-boot-starter:1.5.8.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("junit:junit:4.12")
     // "expectedBy"(project(":common"))  // what this stands for
 }
