@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotlinVersion = "1.1.51"
+val kotlinTest = "2.0.7"
+val junitVersion = "5.0.1"
 
 buildscript {
     dependencies { classpath(kotlin("gradle-plugin")) }
@@ -26,12 +28,16 @@ subprojects {
             jvmTarget = "1.8"
             javaParameters = true
             incremental = true
+            freeCompilerArgs = listOf("-Xjsr305=strict")
         }
         dependencies {
             "compile"(kotlin("stdlib-jre8", kotlinVersion))
-            "testCompile"("junit:junit:4.12")
-            "testCompile"("io.kotlintest:kotlintest:2.0.7")
             "compile"("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+
+            "testCompile"("org.junit.jupiter:junit-jupiter-params:$junitVersion")
+            "testCompile"("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+            "testCompile"("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+            "testCompile"("io.kotlintest:kotlintest:$kotlinTest")
         }
     }
 }
