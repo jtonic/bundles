@@ -15,8 +15,9 @@ buildscript {
     }
 
     dependencies {
-        val springBootVersion = "2.0.0.M5"
-        val junitGradleVersion = "1.0.0"
+        val junitGradleVersion = extra["junit-gradle-version"]
+        val springBootVersion = extra["spring-boot-version"]
+
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath("org.jetbrains.kotlin:kotlin-allopen:1.1.51")
         classpath("io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE")
@@ -33,11 +34,18 @@ apply {
     plugin("kotlin-spring")
     plugin("kotlin")
     plugin("io.spring.dependency-management")
+    plugin("org.junit.platform.gradle.plugin")
 }
 
 application {
     mainClassName = "ro.jtonic.handson.springbapp.Application"
 }
+
+/*junitPlatform {
+    platformVersion '1.0.0'
+    logManager 'org.apache.logging.log4j.jul.LogManager'
+    reportsDir file('build/test-results/junit-platform') // this is the default
+}*/
 
 repositories {
     mavenLocal()

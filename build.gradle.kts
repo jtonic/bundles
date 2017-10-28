@@ -1,18 +1,23 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "1.1.51"
+val kotlinVersion= properties["kotlinVersion"].toString()
 val kotlinTest = "2.0.7"
 val junitVersion = "5.0.1"
 
 buildscript {
-    dependencies { classpath(kotlin("gradle-plugin")) }
+//    extra["kotlinVersion"] = properties["kotlinVersion"].toString() //"1.1.51"
+    extra["kotlinVersion"] = "1.1.51"
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
+    }
     repositories { jcenter() }
 }
 
 allprojects {
     group = "ro.jtonic.bundles"
     version = "0.0.1-SNAPSHOT"
-    extra["kotlin-ver"] = kotlinVersion
+    extra["spring-boot-version"] = "2.0.0.M5"
+    extra["junit-gradle-version"] = "1.0.1"
 
     repositories {
         jcenter()
@@ -46,8 +51,16 @@ plugins {
     base
 }
 
+task("kotlinVersion") {
+    println("Kotlin version: $kotlinVersion")
+}
+
 dependencies {
     subprojects.forEach {
         archives(it)
     }
+}
+
+task<Wrapper>("wrapper") {
+    gradleVersion = "4.3-rc-4"
 }
