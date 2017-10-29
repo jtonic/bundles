@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotlinVersion= properties["kotlinVersion"].toString()
@@ -62,5 +63,7 @@ dependencies {
 }
 
 task<Wrapper>("wrapper") {
+    description = "Generates gradlew[.bat] scripts"
     gradleVersion = "4.3-rc-4"
+    distributionType = ALL
 }
