@@ -32,4 +32,8 @@
     1. Kotlin Idea plugin for 1.1.51
 
 
+#### Todo - Gradle Kotlin DSC
+- how to see project properties (gradle.properties) in  buildscript block?
+- how to run junit 5 tests with gradle?
+
 
