@@ -1,6 +1,6 @@
 ###Goals
 
-1. Learn gradle (Kotlin DSL gradle)
+1. Learn gradle (Kotlin DSL gradle). DON'T USE IT FOR THE MOMENT!!!
 1. Learn kotlin programming language (kotlin APIs)
 1. Learn internal DSL with kotlin
 1. Learn Spring 5 
@@ -26,14 +26,11 @@
 1. The build tool is gradle (kotlin dsl gradle).
 1. The bundle is developed and tested with:
 
-    1. Intellij Idea 2017.2.x +
-    1. gradle 4.2.1
-    1. kotlin 1.1.51
-    1. Kotlin Idea plugin for 1.1.51
-
-
-#### Todo - Gradle Kotlin DSC
-- how to see project properties (gradle.properties) in  buildscript block?
-- how to run junit 5 tests with gradle?
-
+    1. Intellij Idea 2017.2.x+
+    1. gradle 4.3.1+
+    1. kotlin 1.1.51+
+    1. Kotlin Idea plugin for 1.1.51+
+    
+####Notes
+* Junit 5 is not working fine with gradle 4.3.1. Don't use it until the issues are fixed.
 
