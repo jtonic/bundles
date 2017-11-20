@@ -12,13 +12,6 @@ import org.springframework.context.annotation.Bean
 @SpringBootApplication
 class Application {
 
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            SpringApplication.run(Application::class.java, *args)
-        }
-    }
-
     @Bean
     fun applicationRunner() =
         ApplicationRunner { args ->
@@ -27,4 +20,8 @@ class Application {
             println("Arguments = $args")
             println("".padStart(80, '='))
         }
+}
+
+fun main(args: Array<String>) {
+  SpringApplication.run(Application::class.java, *args)
 }

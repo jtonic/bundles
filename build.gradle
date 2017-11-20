@@ -1,0 +1,42 @@
+apply plugin: 'maven'
+
+group = "ro.jtonic.bundles"
+version = "0.0.1-SNAPSHOT"
+
+buildscript {
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'kotlin'
+    apply plugin: 'kotlin-allopen'
+    apply plugin: 'kotlin-noarg'
+
+    compileKotlin {
+        kotlinOptions {
+            suppressWarnings = true
+            languageVersion = "1.1"
+            apiVersion = "1.1"
+            jvmTarget = "1.8"
+            javaParameters = true
+            incremental = true
+        }
+    }
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+        compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+        testCompile "io.kotlintest:kotlintest:$kotlinTestVersion"
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = project.gradleVersion
+    distributionType = Wrapper.DistributionType.ALL
+    distributionUrl = distributionUrl.replace("https", "http")
+}
