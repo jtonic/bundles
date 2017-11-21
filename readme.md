@@ -3,6 +3,7 @@
 1. Learn gradle (Kotlin DSL gradle). DON'T USE IT FOR THE MOMENT!!!
 1. Learn kotlin programming language (kotlin APIs)
 1. Learn internal DSL with kotlin
+1. Spring validation with bean validation  specification
 1. Learn Spring 5 
 
     1. Spring boot

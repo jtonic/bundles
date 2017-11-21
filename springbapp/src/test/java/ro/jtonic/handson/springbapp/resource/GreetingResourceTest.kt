@@ -1,12 +1,13 @@
 package ro.jtonic.handson.springbapp.resource
 
 import io.kotlintest.matchers.shouldBe
+import io.restassured.RestAssured
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.embedded.LocalServerPort
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.junit4.SpringRunner
 
 /**
@@ -18,16 +19,33 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GreetingResourceTest {
 
-  @Autowired
-  private lateinit var restTemplate: TestRestTemplate
-
   @LocalServerPort
   private var port: Int = 0
 
   @Test
-  fun greeting() {
+  fun `greeting with valid input`() {
     val name = "Antonel"
-    val response = restTemplate.getForEntity("http://localhost:$port/greeting/$name", String::class.java)
-    response.body shouldBe "Hello $name"
+    val url = "http://localhost:$port/greeting"
+
+    RestAssured.given()
+      .queryParam("name", name)
+      .`when`()
+      .get(url)
+      .then()
+      .statusCode(OK.value())
+      .extract().body().asString() shouldBe "Greeting $name"
+  }
+
+  @Test
+  fun `greeting with invalid input`() {
+    val url = "http://localhost:$port/greeting"
+
+    val body = RestAssured.given()
+      .`when`()
+      .get(url)
+      .then()
+      .statusCode(INTERNAL_SERVER_ERROR.value())
+      .extract().body().asString()
+    println("body = $body")
   }
 }

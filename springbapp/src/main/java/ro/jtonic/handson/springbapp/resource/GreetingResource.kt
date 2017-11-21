@@ -1,9 +1,11 @@
 package ro.jtonic.handson.springbapp.resource
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import ro.jtonic.handson.springbapp.services.impl.GreetingService
 
 /**
  * Created by Antonel Ernest Pazargic on 26/10/2017.
@@ -11,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping(path = arrayOf("/greeting"))
-class GreetingResource {
+class GreetingResource(@Autowired private val greetingService: GreetingService) {
 
-    @GetMapping(path = arrayOf("/{person}"))
-    fun greeting(@PathVariable("person") person: String) =  "Hello $person"
+  @GetMapping
+  fun greeting(@RequestParam("name", required = false) person: String?) = greetingService.greeting(person)
 }
