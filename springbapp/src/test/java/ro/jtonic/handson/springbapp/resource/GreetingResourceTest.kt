@@ -33,7 +33,7 @@ class GreetingResourceTest {
       .get(url)
       .then()
       .statusCode(OK.value())
-      .extract().body().asString() shouldBe "Greeting $name"
+      .extract().body().asString() shouldBe "Greeting Mr. $name"
   }
 
   @Test

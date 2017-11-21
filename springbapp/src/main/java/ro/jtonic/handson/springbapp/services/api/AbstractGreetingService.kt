@@ -1,12 +1,21 @@
 package ro.jtonic.handson.springbapp.services.api
 
-import org.springframework.beans.factory.annotation.Autowired
-import ro.jtonic.handson.springbapp.services.impl.GreetingDelegate
+import org.springframework.validation.annotation.Validated
 import javax.validation.constraints.NotNull
 
 abstract class AbstractGreetingService {
 
-  @Autowired protected lateinit var greetingDelegate: GreetingDelegate
+  protected abstract val postProcessor: PostProcessor
 
-  abstract fun greeting(@NotNull(message = "should not be null") name: String?): String
+  fun greeting(name: String?): String {
+    println("printing = $name")
+    return postProcessor.postProcess(name)
+  }
+}
+
+@Validated
+interface PostProcessor {
+
+  @Validated
+  fun postProcess(@NotNull name: String?): String
 }
