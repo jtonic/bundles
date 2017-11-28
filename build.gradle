@@ -26,11 +26,13 @@ subprojects {
             jvmTarget = "1.8"
             javaParameters = true
             incremental = true
+            freeCompilerArgs = ["-Xjsr305=strict"]
         }
     }
     dependencies {
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
         compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+        compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
         testCompile "io.kotlintest:kotlintest:$kotlinTestVersion"
     }
 }
