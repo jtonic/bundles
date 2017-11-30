@@ -11,7 +11,7 @@ import ro.jtonic.handson.springbapp.services.api.AbstractGreetingService
  * @author Antonel Ernest Pazargic
  */
 @RestController
-@RequestMapping(path = arrayOf("/greeting"))
+@RequestMapping(path = ["/greeting"])
 class GreetingResource(private val greetingService: AbstractGreetingService) {
 
   @GetMapping
