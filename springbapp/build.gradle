@@ -5,8 +5,8 @@ apply plugin: 'io.spring.dependency-management'
 
 buildscript {
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:1.1.51")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
         classpath("io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE")
     }
 }
@@ -17,8 +17,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter"
     compile "org.springframework.boot:spring-boot-starter-web"
     testCompile "org.springframework.boot:spring-boot-starter-test"
-    testCompile "junit:junit:4.12"
-    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.5'
-    compile group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.5'
+    testCompile "junit:junit:$junitVersion"
+    testCompile "io.rest-assured:rest-assured:$restAssuredVersion"
+    compile "io.rest-assured:json-schema-validator:$restAssuredVersion"
     // "expectedBy"(project(":common"))  // what this stands for
 }
