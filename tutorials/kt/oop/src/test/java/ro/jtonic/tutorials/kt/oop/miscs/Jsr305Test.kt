@@ -1,6 +1,5 @@
 package ro.jtonic.tutorials.kt.oop.miscs
 
-import io.kotlintest.matchers.gt
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 import ro.jtonic.tutorials.kt.oop.javaclasses.Printer
@@ -14,6 +13,8 @@ class Jsr305Test {
     @Test
     fun `printing a page with java Printer class`() {
         val page = null
+        // the following doesn't compile
+        Printer().printPage(page).length ?: 0 shouldBe 0
         Printer().printPage(page).length ?: 0 shouldBe 0
 
         val document = null
