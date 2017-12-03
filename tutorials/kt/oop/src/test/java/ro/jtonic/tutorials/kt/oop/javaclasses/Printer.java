@@ -19,7 +19,7 @@ public class Printer {
     }
 
     public String printDocument(String document) {
-        System.out.printf("Printing document '%s%n'", document);
+        System.out.printf("Printing document '%s'%n", document);
         return String.format("[printed] %s", document);
     }
 }

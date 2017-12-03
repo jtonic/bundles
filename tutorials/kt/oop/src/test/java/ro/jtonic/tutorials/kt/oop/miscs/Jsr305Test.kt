@@ -13,11 +13,9 @@ class Jsr305Test {
     @Test
     fun `printing a page with java Printer class`() {
         val page = null
-        // the following doesn't compile
-        Printer().printPage(page).length ?: 0 shouldBe 0
-        Printer().printPage(page).length ?: 0 shouldBe 0
+        Printer().printPage(page)?.length ?: 0 shouldBe 0
 
         val document = null
-        Printer().printDocument(document).length ?: 0 shouldBe 0
+        Printer().printDocument(document)?.length ?: 0 shouldBe 0
     }
 }
