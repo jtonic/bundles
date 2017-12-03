@@ -1,6 +1,5 @@
 package ro.jtonic.tutorials.kt.oop.javaclasses;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -11,7 +10,7 @@ import javax.annotation.Nullable;
 @Nullable
 public class Printer {
 
-    public @Nullable String printPage(@Nullable String page) {
+    public String printPage(String page) {
         if (null == page) {
             return null;
         }
@@ -19,8 +18,7 @@ public class Printer {
         return String.format("[printed] %s", page);
     }
 
-    @Nonnull
-    public String printDocument(@Nonnull String document) {
+    public String printDocument(String document) {
         System.out.printf("Printing document '%s%n'", document);
         return String.format("[printed] %s", document);
     }

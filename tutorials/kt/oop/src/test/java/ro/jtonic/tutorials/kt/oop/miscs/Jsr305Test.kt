@@ -14,8 +14,9 @@ class Jsr305Test {
     @Test
     fun `printing a page with java Printer class`() {
         val page = null
-        val document = "my document"
-        Printer().printPage(page)?.length ?: 0 shouldBe 0
-        Printer().printDocument(document).length shouldBe gt(document.length)
+        Printer().printPage(page).length ?: 0 shouldBe 0
+
+        val document = null
+        Printer().printDocument(document).length ?: 0 shouldBe 0
     }
 }
