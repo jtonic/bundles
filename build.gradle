@@ -18,7 +18,7 @@ subprojects {
     apply plugin: 'kotlin-allopen'
     apply plugin: 'kotlin-noarg'
 
-    compileKotlin {
+    [compileKotlin, compileTestKotlin]*.configure {
         kotlinOptions {
             suppressWarnings = true
             languageVersion = kotlinLanguageVersion
