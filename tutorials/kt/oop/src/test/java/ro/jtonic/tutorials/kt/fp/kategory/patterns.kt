@@ -1,18 +1,33 @@
 package ro.jtonic.tutorials.kt.fp.kategory
 
+import kategory.Option.Some
+import kategory.Option.None
+import kategory.Option
+import kategory.binding
+import kategory.ev
+import kategory.monad
+
 /**
  * Created by Antonel Ernest Pazargic on 10/12/2017.
  * @author Antonel Ernest Pazargic
  */
 
 object Nuke
+
 object Target
 object Impacted
 
-fun arm(): Nuke = TODO()
-fun aim(): Target = TODO()
-fun launch(nuke: Nuke, target: Target): Impacted = TODO()
+fun arm(): Option<Nuke> = None
+fun aim(): Option<Target> = None
+fun launch(nuke: Nuke, target: Target): Option<Impacted> = Some(Impacted)
 
 fun main(args: Array<String>) {
-    launch(arm(), aim())
+    val eval = Option.monad().binding {
+        val nuke = arm().bind()
+        val target = aim().bind()
+        val impact = launch(nuke, target).bind()
+        yields(impact)
+    }.ev()
+
+    println("launch() = $eval")
 }
