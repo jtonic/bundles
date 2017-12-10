@@ -12,6 +12,12 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        maven { url "http://dl.bintray.com/kategory/maven" }
+    }
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'kotlin'
@@ -35,6 +41,7 @@ subprojects {
         compile "com.google.code.findbugs:jsr305:$findBugsVersion"
         testCompile "io.kotlintest:kotlintest:$kotlinTestVersion"
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinCoroutinesVersion"
+        compile "io.kategory:kategory:$kategoryVersion"
     }
 }
 
