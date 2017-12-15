@@ -7,16 +7,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import ro.jtonic.handson.exception.ExportException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.annotation.Inherited
 
 /**
  * Created by Antonel Ernest Pazargic on 14/10/2017.
  * @author Antonel Ernest Pazargic
  */
 
+@DslMarker
+@Inherited
+annotation class PoiDsl
+
 object WorkbookBuilder {
     fun build(fileName: String, init: WORKBOOK.() -> Unit) = WORKBOOK(fileName).apply(init)
 }
 
+@PoiDsl
 abstract class ITEM(protected val name: String = "") {
 
     protected var children = mutableListOf<ITEM>()
