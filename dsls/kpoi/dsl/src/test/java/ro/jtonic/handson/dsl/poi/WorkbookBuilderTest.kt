@@ -11,7 +11,7 @@ class WorkbookBuilderTest {
 
     @Test
     fun `build a simple workbook`() {
-        WorkbookBuilder.build("./Simple.xlsx") {
+        Workbook()("./Simple.xlsx") {
             sheet("Simple") {
                 row(0) {
                     cell(0) {
@@ -19,12 +19,26 @@ class WorkbookBuilderTest {
                     }
                 }
             }
-        }()
+        }
+    }
+
+    @Test
+    fun `build a simple workbook - with invoke`() {
+        val workbook = Workbook()
+        workbook("./Simple.xlsx") {
+            sheet("Simple") {
+                row(0) {
+                    cell(0) {
+                        value = "Kotlin DSL rules"
+                    }
+                }
+            }
+        }
     }
 
     @Test
     fun `build a little bit complicated workbook`() {
-        WorkbookBuilder.build("./DSL.xlsx") {
+        Workbook()("./DSL.xlsx") {
             for (sheetNo in 0..1) {
                 sheet("Sheet $sheetNo") {
                     for (rowNo in 0..5) {
@@ -38,6 +52,6 @@ class WorkbookBuilderTest {
                     }
                 }
             }
-        }()
+        }
     }
 }

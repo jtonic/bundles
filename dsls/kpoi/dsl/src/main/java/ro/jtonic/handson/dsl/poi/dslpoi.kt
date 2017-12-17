@@ -18,8 +18,9 @@ import java.lang.annotation.Inherited
 @Inherited
 annotation class PoiDsl
 
-object WorkbookBuilder {
-    fun build(fileName: String, init: WORKBOOK.() -> Unit) = WORKBOOK(fileName).apply(init)
+@PoiDsl
+class Workbook {
+    operator fun invoke(fileName: String, init: _WORKBOOK.() -> Unit) = _WORKBOOK(fileName).apply(init)()
 }
 
 @PoiDsl
@@ -27,22 +28,20 @@ abstract class ITEM(protected val name: String = "") {
 
     protected var children = mutableListOf<ITEM>()
 
-    protected fun <E : ITEM> doInit(child: E, init: E.() -> Unit) {
+    internal fun <E : ITEM> doInit(child: E, init: E.() -> Unit) {
         child.init()
         children.add(child)
     }
 }
 
-class WORKBOOK(private val fileName: String) : ITEM() {
-
-    fun sheet(name: String, init: SHEET.() -> Unit) = doInit(SHEET(name), init)
+class _WORKBOOK(private val fileName: String) : ITEM() {
 
     operator fun invoke() {
 
         val workbook = XSSFWorkbook() as Workbook
         for (sheet in children) {
             when (sheet) {
-                is SHEET -> sheet.create(workbook)
+                is _SHEET -> sheet.create(workbook)
                 else -> throw RuntimeException("Cannot create sheets")
             }
         }
@@ -52,17 +51,18 @@ class WORKBOOK(private val fileName: String) : ITEM() {
             throw ExportException("Cannot export data into ms file $fileName")
         }
     }
+
 }
 
-class SHEET(name: String) : ITEM(name) {
+fun _WORKBOOK.sheet(name: String, init: _SHEET.() -> Unit) = doInit(_SHEET(name), init)
 
-    fun row(no: Int, init: ROW.() -> Unit) = doInit(ROW(no), init)
+class _SHEET(name: String) : ITEM(name) {
 
     internal fun create(workbook: Workbook) {
         val wbSheet = workbook.createSheet(name)!!
         for (row in children) {
             when (row) {
-                is ROW -> row.create(wbSheet)
+                is _ROW -> row.create(wbSheet)
                 else -> throw RuntimeException("row cannot be created")
             }
         }
@@ -70,15 +70,15 @@ class SHEET(name: String) : ITEM(name) {
 
 }
 
-class ROW(private val no: Int) : ITEM() {
+fun _SHEET.row(no: Int, init: _ROW.() -> Unit) = doInit(_ROW(no), init)
 
-    fun cell(no: Int, init: CELL.() -> Unit) = doInit(CELL(no), init)
+class _ROW(private val no: Int) : ITEM() {
 
     internal fun create(wbSheet: Sheet) {
         val wbRow = wbSheet.createRow(no)!!
         for (cell in children) {
             when (cell) {
-                is CELL -> cell.create(wbRow)
+                is _CELL -> cell.create(wbRow)
                 else -> throw RuntimeException("Cannot create cell")
             }
         }
@@ -86,7 +86,9 @@ class ROW(private val no: Int) : ITEM() {
 
 }
 
-class CELL(private val no: Int) : ITEM() {
+fun _ROW.cell(no: Int, init: _CELL.() -> Unit) = doInit(_CELL(no), init)
+
+class _CELL(private val no: Int) : ITEM() {
 
     var value = ""
 
