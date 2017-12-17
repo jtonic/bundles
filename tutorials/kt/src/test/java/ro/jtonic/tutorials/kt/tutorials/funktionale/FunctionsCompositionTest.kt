@@ -16,8 +16,8 @@ class FunctionsCompositionTest {
 
     @Test
     fun `compose the result of a sum with a multiply applying currying`() {
-        val add2Ints = {a: Int, b: Int -> a + b}
-        val multiply = {a: Int, b: Int -> a * b}
+        val add2Ints = { a: Int, b: Int -> a + b }
+        val multiply = { a: Int, b: Int -> a * b }
         val add5 = add2Ints.curried()(5)
 
         val multiplyBy2 = multiply.curried()(2)
@@ -34,4 +34,37 @@ class FunctionsCompositionTest {
         val unpaired = paired.unpaired()
         unpaired(1, 2) shouldBe sum(1, 2)
     }
+
+    @Test
+    fun `test curried with method reference`() {
+        fun add2Ints(a: Int, b: Int) = a + b
+        fun multiply(a: Int, b: Int) = a * b
+
+        val add5 = ::add2Ints.curried()(5)
+        val multiply2 = ::multiply.curried()(2)
+
+        add5(5) shouldBe 10
+        multiply2(5) shouldBe 10
+
+        (add5 andThen multiply2)(5) shouldBe 20
+    }
+
+    @Test
+    fun `a nice chain`() {
+        fun config() = ConfigData()
+        fun restCall(config: ConfigData): User {
+            val user = User("antonel", config.role)
+            println("Rest call. Getting the user: $user")
+            return user
+        }
+        fun printToConsole(user: User) {
+            println("user = $user")
+        }
+        (::config andThen ::restCall andThen ::printToConsole)()
+    }
+
+    class ConfigData {
+        val role by lazy { "Admin" }
+    }
+    data class User(val userName: String, val role: String)
 }
