@@ -45,7 +45,7 @@ allprojects {
         }
     }
     dependencies {
-        compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
         compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
         compile "com.google.code.findbugs:jsr305:$findBugsVersion"
         testCompile "io.kotlintest:kotlintest:$kotlinTestVersion"
