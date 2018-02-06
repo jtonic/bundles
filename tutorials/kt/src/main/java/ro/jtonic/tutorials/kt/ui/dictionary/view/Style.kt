@@ -14,7 +14,7 @@ class Style : Stylesheet() {
 
     init {
         select(appSizeRule) {
-            minHeight = 500.px
+            minHeight = 300.px
             maxWidth = 600.px
         }
     }

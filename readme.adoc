@@ -22,15 +22,24 @@
     
 1. and much more...
 
+#### TODOs
+1. TornadoFX
+    1. inject a controller
+    1. data binding
+    1. validation
+    1. [.line-through]#call REST API with injected TFX REST client#
+    1. controller to model.
+    1. view to model
+
 #### Notes:
 1. This is a bundle comprising of many tutorials and mini projects
 1. The build tool is gradle (kotlin dsl gradle).
 1. The bundle is developed and tested with:
 
     1. Intellij Idea 2017.2.x+
-    1. gradle 4.3.1+
-    1. kotlin 1.1.51+
-    1. Kotlin Idea plugin for 1.1.51+
+    1. gradle 4.5.1+
+    1. kotlin 1.2.21+
+    1. Kotlin Idea plugin for 1.2.21+
     
 ####Notes
 * Junit 5 is not working fine with gradle 4.3.1. Don't use it until the issues are fixed.
