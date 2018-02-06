@@ -28,8 +28,12 @@
     1. data binding
     1. validation
     1. [.line-through]#call REST API with injected TFX REST client#
-    1. controller to model.
+    1. controller to model
     1. view to model
+    1. progress bar / loader for the REST API call
+    1. [.line-through]#custom button css style#
+    1. [.line-through]#custom view background color#
+
 
 #### Notes:
 1. This is a bundle comprising of many tutorials and mini projects

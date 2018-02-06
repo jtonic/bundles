@@ -1,7 +1,7 @@
 package ro.jtonic.tutorials.kt.ui.dictionary.app
 
 import javafx.application.Application
-import ro.jtonic.tutorials.kt.ui.dictionary.view.Style
+import ro.jtonic.tutorials.kt.ui.dictionary.css.Style
 import ro.jtonic.tutorials.kt.ui.dictionary.view.WordsView
 import tornadofx.*
 
