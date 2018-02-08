@@ -17,7 +17,7 @@ class WordsView : View("Dictionary") {
     private var lastNameTxt: TextField by singleAssign()
     private var birthDateDatePick: DatePicker by singleAssign()
     private var resultLbl: Label by singleAssign()
-    private val controller: WordController = WordController()
+    private val controller: WordController by inject()
 
     private val itemsGlobal = listOf("Antonel", "Irina", "Roxana", "Liviu", "Bogdan")
     private val selectedItem = SimpleStringProperty(itemsGlobal.first())
