@@ -1,10 +1,10 @@
 package ro.jtonic.tutorials.kt.fp.kategory
 
-import kategory.Option
-import kategory.Option.Some
-import kategory.binding
-import kategory.ev
-import kategory.monad
+import arrow.core.Option
+import arrow.core.Some
+import arrow.core.ev
+import arrow.core.monad
+import arrow.typeclasses.binding
 
 /**
  * Created by Antonel Ernest Pazargic on 10/12/2017.

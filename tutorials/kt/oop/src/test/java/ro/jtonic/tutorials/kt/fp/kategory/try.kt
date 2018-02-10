@@ -1,9 +1,9 @@
 package ro.jtonic.tutorials.kt.fp.kategory
 
-import kategory.Try
-import kategory.binding
-import kategory.ev
-import kategory.monad
+import arrow.data.Try
+import arrow.data.ev
+import arrow.data.monad
+import arrow.typeclasses.binding
 
 class ArmException(msg: String) : RuntimeException(msg)
 

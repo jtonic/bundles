@@ -1,12 +1,13 @@
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
+import arrow.data.Failure
+import arrow.data.Success
+import arrow.data.Try
+import arrow.data.getOrElse
 import io.kotlintest.matchers.beOfType
 import io.kotlintest.matchers.fail
 import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
-import org.funktionale.tries.Try
-import org.funktionale.tries.Try.Failure
-import org.funktionale.tries.Try.Success
 import org.junit.Test
 
 /**
@@ -28,7 +29,7 @@ class TryTest {
                 fail("This should not happen")
             }
             is Failure -> {
-                result.throwable should beOfType<IndexOutOfBoundsException>()
+                result.exception should beOfType<IndexOutOfBoundsException>()
             }
         }
     }

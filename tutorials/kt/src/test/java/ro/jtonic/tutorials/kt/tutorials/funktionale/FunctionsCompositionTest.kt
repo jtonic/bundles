@@ -1,10 +1,10 @@
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
+import arrow.syntax.function.andThen
+import arrow.syntax.function.curried
+import arrow.syntax.function.paired
+import arrow.syntax.function.unpaired
 import io.kotlintest.matchers.shouldBe
-import org.funktionale.composition.andThen
-import org.funktionale.currying.curried
-import org.funktionale.pairing.paired
-import org.funktionale.pairing.unpaired
 import org.junit.Test
 
 /**

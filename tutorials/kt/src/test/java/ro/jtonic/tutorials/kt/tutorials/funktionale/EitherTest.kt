@@ -1,8 +1,8 @@
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
+import arrow.data.Try
+import arrow.legacy.disjunctionTry
 import io.kotlintest.matchers.*
-import org.funktionale.either.disjunctionTry
-import org.funktionale.either.eitherTry
 import org.junit.Test
 
 /**
@@ -24,10 +24,9 @@ class EitherTest {
     @Test
     fun `get the first entry in a list with either`() {
         val lst = emptyList<String>()
-
-        eitherTry {
+        Try {
             getFirst2Values(lst)
-        }.fold({
+        }.toEither().fold({
             it should beOfType<IndexOutOfBoundsException>()
         }) {
             fail("This shouldn't occurred")
