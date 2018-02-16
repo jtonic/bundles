@@ -1,9 +1,16 @@
 package ro.jtonic.tutorials.kt.tutorials
 
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.whenever
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldNotBe
+import io.kotlintest.mock.mock
 import org.junit.Test
 import kotlin.properties.Delegates
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KClass
+import kotlin.reflect.KProperty
+import kotlin.reflect.full.createInstance
 
 /**
  * Created by Antonel Ernest Pazargic on 10/02/2018.
@@ -46,6 +53,57 @@ class DelegatesTest {
         ligia.age shouldNotBe 5
         ligia.name shouldNotBe "Ligia Pazargic"
     }
+
+    @Test
+    fun `custom delegate`() {
+        class Injectable {
+            val single: String by value()
+        }
+        val single = Injectable().single
+        single shouldNotBe null
+    }
+
+    inline fun <reified T> value(params: Map<String, Any?>? = null): ReadOnlyProperty<Any, T> where T: Any = object : ReadOnlyProperty<Any, T> {
+//        override fun getValue(thisRef: Any, property: KProperty<*>): T = create(T::class.java, params)
+        override fun getValue(thisRef: Any, property: KProperty<*>): T = create(T::class, params)
+    }
+
+    fun <T : Any> create(type: KClass<T>, params: Map<*, Any?>?): T {
+        val instance = type.createInstance()
+        return instance
+    }
+/*
+    fun <T : Any> create(type: java.lang.Class<T>, params: Map<*, Any?>?): T {
+        val kclass = type.kotlin
+        val instance = kclass.createInstance()
+        return instance
+    }
+*/
+
+    @Test
+    fun `with mockito kotlin`() {
+        val appCtx = mock<TestAppCtx>()
+        whenever(appCtx.foo(any())).thenReturn("kkmk")
+
+    }
+
+    class TestAppCtx {
+
+        fun foo(a: String): String {
+            return a
+        }
+    }
+
+/*
+    object ApplicationContext {
+
+        fun <T> get(value: Klass<T>): T =
+                when (value) {
+                    is String -> value
+                    else -> throw IllegalArgumentException("Cannot be retrieved from application context")
+                }
+    }
+*/
 
     class Student(val name: String, val age: Int = 5)
 }
