@@ -93,7 +93,27 @@ class ReflectionTest {
         }
     }
 
-    data class Student(val fName: String, val lName: String, val age: Int = 18)
+    @Test
+    fun `statically get the value of an instance property`() {
+        val student = Student("Antonel", "Pazargic")
+        val fNameProp = Student::fName
+        val fName = fNameProp.get(student)
+        fName shouldBe student.fName
+    }
+
+    @Test
+    fun `statically set a value of an instance property`() {
+        val student = Student("Antonel", "Pazargic")
+        val fNameProp = Student::fName as? KMutableProperty1
+
+        fNameProp?.let {
+            it.set(student, "Brad")
+            student.fName  shouldBe "Brad"
+        } ?: throw RuntimeException("val property cannot be mutated")
+
+    }
+
+    data class Student(var fName: String, val lName: String, val age: Int = 18)
 }
 
 fun foo(msg: String) = println(msg)
