@@ -84,7 +84,7 @@ class ReflectionTest {
                 ?: throw IllegalArgumentException()
         val lNameParam = ctor.findParameterByName(Student::lName.name)
                 ?: throw IllegalArgumentException()
-        val student = ctor.callBy(mapOf(fNameParam to "Antonel", lNameParam to "Pazargic"))
+        val student = ctor.callBy(mapOf(lNameParam to "Pazargic", fNameParam to "Antonel"))
 
         with(student) {
             fName shouldBe "Antonel"
