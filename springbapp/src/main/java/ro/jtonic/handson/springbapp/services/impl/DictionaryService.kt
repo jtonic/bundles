@@ -10,8 +10,6 @@ import ro.jtonic.handson.springbapp.client.DictionaryFeignClient
 @Service
 class DictionaryService (val dictionaryFeignClient: DictionaryFeignClient) {
 
-    fun findWord(word: String) {
+    fun findWord(word: String) =
         dictionaryFeignClient.findWord(word)
-    }
-
 }

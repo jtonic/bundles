@@ -2,4 +2,4 @@ dictionary:
    ribbon:
       eureka:
          enabled: false
-      listOfServers: dictionary.com
+      listOfServers: od-api.oxforddictionaries.com:443

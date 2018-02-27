@@ -4,6 +4,7 @@ import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import javax.ws.rs.core.MediaType
 
 
 /**
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable
  * @author Antonel Ernest Pazargic
  */
 @Service
-@FeignClient(name = "dictionary")
+@FeignClient(name = "https://dictionary")
 interface DictionaryFeignClient {
 
-    @GetMapping(value = ["/dictionary/{word}"], produces = ["text/plain"])
+    @GetMapping(value = ["api/v1/entries/en/{word}"], produces = [MediaType.APPLICATION_JSON])
     fun findWord(@PathVariable("word") storeId: String): String
 }

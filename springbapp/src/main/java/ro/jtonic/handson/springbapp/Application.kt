@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.cloud.netflix.feign.EnableFeignClients
 import org.springframework.context.annotation.Bean
 import ro.jtonic.handson.springbapp.services.impl.DictionaryService
 
@@ -13,7 +12,6 @@ import ro.jtonic.handson.springbapp.services.impl.DictionaryService
  * @author Antonel Ernest Pazargic
  */
 @SpringBootApplication
-@EnableFeignClients
 class Application {
 
     companion object {
@@ -35,7 +33,8 @@ class Application {
                 println("Arguments = $args")
                 println("".padStart(80, '='))
 
-                //            dictionaryService.findWord("Antonel")
+                val deaf = dictionaryService.findWord("deaf")
+                println("deaf = $deaf")
             }
 
 }
