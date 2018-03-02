@@ -1,4 +1,4 @@
-apply plugin: 'application'
+//apply plugin: 'application'
 apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -10,21 +10,23 @@ buildscript {
     }
 }
 
+/*
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.SR2'
     }
 }
+*/
 
-mainClassName = "ro.jtonic.handson.springbapp.Application"
+//mainClassName = "ro.jtonic.handson.springbapp.Application"
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter"
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.cloud:spring-cloud-starter-feign'
-    compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
+//    compile 'org.springframework.cloud:spring-cloud-starter-feign'
+//    compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
 
-    compile "io.rest-assured:json-schema-validator:$restAssuredVersion"
+//    compile "io.rest-assured:json-schema-validator:$restAssuredVersion"
 
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
