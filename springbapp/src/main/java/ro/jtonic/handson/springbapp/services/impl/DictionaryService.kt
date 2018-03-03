@@ -1,7 +1,7 @@
 package ro.jtonic.handson.springbapp.services.impl
 
 import org.springframework.stereotype.Service
-import ro.jtonic.handson.springbapp.client.DictionaryFeignClient
+import ro.jtonic.handson.springbapp.client.dictionary.DictionaryFeignClient
 
 /**
  * Created by Antonel Ernest Pazargic on 26/02/2018.

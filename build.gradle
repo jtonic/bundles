@@ -80,8 +80,8 @@ allprojects {
 
 configurations.all {
     resolutionStrategy {
-        force('org.jetbrains.kotlin:kotlin-stdlib:1.2.21')
-        force('org.jetbrains.kotlin:kotlin-reflect:1.2.21')
+        force("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+        force("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     }
 }
 

@@ -31,7 +31,9 @@
 * Use `@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)` to get HttpRequest things in a singleton bean
 
 
-        
+#### Fix the following
+1. Spring boot test application cannot autowire Feign Clients
+     
 
 
 

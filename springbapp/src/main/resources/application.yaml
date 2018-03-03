@@ -3,3 +3,8 @@ dictionary:
       eureka:
          enabled: false
       listOfServers: od-api.oxforddictionaries.com:443
+marvel:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: https://gateway.marvel.com:443
