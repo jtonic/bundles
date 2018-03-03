@@ -88,5 +88,6 @@ configurations.all {
 task wrapper(type: Wrapper) {
     gradleVersion = project.gradleVersion
     distributionType = Wrapper.DistributionType.ALL
-    distributionUrl = distributionUrl.replace("https", "http")
+    //    distributionUrl = "gradle-$gradleVersion-all.zip"
+    distributionUrl = "http://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
