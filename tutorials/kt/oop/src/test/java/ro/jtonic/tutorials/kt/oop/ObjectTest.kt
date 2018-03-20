@@ -1,9 +1,6 @@
 package ro.jtonic.tutorials.kt.oop
 
-import io.kotlintest.matchers.beInstanceOf
-import io.kotlintest.matchers.beTheSameInstanceAs
-import io.kotlintest.matchers.should
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.*
 import org.junit.Test
 
 /**
@@ -45,8 +42,34 @@ class ObjectTest {
         length should beInstanceOf(Number::class)
 
         val length2: Number = name?.length ?: 1.1
-        length shouldBe 1.1
+        length2 shouldBe 1.1
     }
+
+    @Test
+    fun `minimum common type in kotlin is different than in java - Nothing implied`() {
+        shouldThrow<RuntimeException> {
+            val name: String? = null
+            val length = name?.length ?: throw RuntimeException()
+            length
+        }
+    }
+
+    @Test
+    fun `deconstructing of a class`() {
+        operator fun Cake.component1() = this.flavor
+
+        val (flavor) = Cake("strawberry")
+        flavor shouldBe "strawberry"
+        flavor shouldBe instanceOf(String::class)
+        flavor shouldBe instanceOf(Flavour::class)
+    }
+
+    @Test
+    fun `strange but possible in kotlin - Unit`() {
+        val a: Unit? = Unit // Unit? exists for keeping the consistency for the kotlin type system and improve the compilation time
+        a shouldBe instanceOf(Unit::class)
+    }
+
 }
 
 typealias Flavour = String
