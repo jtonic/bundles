@@ -1,14 +1,17 @@
-apply plugin: 'application'
-apply plugin: 'kotlin-spring'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
 buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion"
     }
 }
+
+apply plugin: 'application'
+apply plugin: 'kotlin-spring'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.jetbrains.kotlin.plugin.noarg'
+apply plugin: 'org.jetbrains.kotlin.plugin.allopen'
 
 dependencyManagement {
     imports {
@@ -23,6 +26,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.cloud:spring-cloud-starter-feign'
     compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonKotlinModuleVersion"
 
     compile "io.rest-assured:json-schema-validator:$restAssuredVersion"
 
@@ -35,4 +39,8 @@ dependencies {
 
 allOpen {
     annotation("ro.jtonic.handson.springbapp.annotation.Open")
+}
+
+noArg {
+    annotation("ro.jtonic.handson.springbapp.annotation.NoArgs")
 }

@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
 import ro.jtonic.handson.springbapp.client.dictionary.DictionaryFeignClient
+import ro.jtonic.handson.springbapp.client.hr.HrFeignClient
 import ro.jtonic.handson.springbapp.client.marvel.MarvelFeignClient
 import ro.jtonic.handson.springbapp.services.impl.DictionaryService
 
@@ -20,7 +21,8 @@ class Application {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            SpringApplicationBuilder().web(false).sources(Application::class.java).build(*args).run()
+            val web = System.getProperty("web")?.toBoolean() ?: false
+            SpringApplicationBuilder().web(web).sources(Application::class.java).build(*args).run()
         }
     }
 
@@ -29,6 +31,9 @@ class Application {
 
     @Autowired
     private lateinit var dictionaryFeignClient: DictionaryFeignClient
+
+    @Autowired
+    private lateinit var hrFeignClient: HrFeignClient
 
     @Autowired
     private lateinit var marvelFeignClient: MarvelFeignClient
@@ -41,13 +46,21 @@ class Application {
                 println("Arguments = $args")
                 println("".padStart(80, '='))
 
-                val deaf = dictionaryService.findWord("deaf")
-                println("deaf = $deaf")
+                if (System.getProperty("client")?.toBoolean() == true) {
+                    val employees = hrFeignClient.getEmployees()
+                    employees.forEach(::println)
+                    assert(employees.size == 2)
 
-                val deaf2 = dictionaryFeignClient.findWord("deaf")
-                assert(deaf == deaf2)
+                    val deaf = dictionaryService.findWord("deaf")
+                    println("deaf = $deaf")
 
-                val characters = marvelFeignClient.findCharacters(limit = 2)
-                println(characters)
+                    val deaf2 = dictionaryFeignClient.findWord("deaf")
+                    assert(deaf == deaf2)
+
+                    /*
+                                    val characters = marvelFeignClient.findCharacters(limit = 2)
+                                    println(characters)
+                    */
+                }
             }
 }

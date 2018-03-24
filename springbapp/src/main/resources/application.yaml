@@ -8,3 +8,11 @@ marvel:
     eureka:
       enabled: false
     listOfServers: https://gateway.marvel.com:443
+hr:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:8080, localhost:9090
+
+server:
+  port: 8080
