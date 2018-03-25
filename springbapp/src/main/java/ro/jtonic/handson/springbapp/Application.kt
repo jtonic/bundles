@@ -5,6 +5,8 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
+import ro.jtonic.handson.springbapp.client.FeignConfiguration
 import ro.jtonic.handson.springbapp.client.dictionary.DictionaryFeignClient
 import ro.jtonic.handson.springbapp.client.hr.HrFeignClient
 import ro.jtonic.handson.springbapp.client.marvel.MarvelFeignClient
@@ -15,6 +17,7 @@ import ro.jtonic.handson.springbapp.services.impl.DictionaryService
  * @author Antonel Ernest Pazargic
  */
 @SpringBootApplication
+@ComponentScan(excludeFilters = [ComponentScan.Filter(value = [FeignConfiguration::class])])
 class Application {
 
     companion object {
@@ -50,12 +53,14 @@ class Application {
                     val employees = hrFeignClient.getEmployees()
                     employees.forEach(::println)
                     assert(employees.size == 2)
+                    /*
 
-                    val deaf = dictionaryService.findWord("deaf")
-                    println("deaf = $deaf")
+                                        val deaf = dictionaryService.findWord("deaf")
+                                        println("deaf = $deaf")
 
-                    val deaf2 = dictionaryFeignClient.findWord("deaf")
-                    assert(deaf == deaf2)
+                                        val deaf2 = dictionaryFeignClient.findWord("deaf")
+                                        assert(deaf == deaf2)
+                    */
 
                     /*
                                     val characters = marvelFeignClient.findCharacters(limit = 2)

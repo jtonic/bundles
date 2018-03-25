@@ -13,6 +13,10 @@ hr:
     eureka:
       enabled: false
     listOfServers: localhost:8080, localhost:9090
-
+    ConnectTimeout: 250
+    ReadTimeout: 5000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 2
 server:
   port: 8080
