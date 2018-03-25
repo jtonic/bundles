@@ -1,5 +1,6 @@
 package ro.jtonic.handson.springbapp
 
+import io.kotlintest.matchers.shouldThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import ro.jtonic.handson.springbapp.client.FeignConfiguration
 import ro.jtonic.handson.springbapp.client.dictionary.DictionaryFeignClient
+import ro.jtonic.handson.springbapp.client.hr.BusinessFeignException
 import ro.jtonic.handson.springbapp.client.hr.HrFeignClient
 import ro.jtonic.handson.springbapp.client.marvel.MarvelFeignClient
 import ro.jtonic.handson.springbapp.services.impl.DictionaryService
@@ -50,22 +52,26 @@ class Application {
                 println("".padStart(80, '='))
 
                 if (System.getProperty("client")?.toBoolean() == true) {
-                    val employees = hrFeignClient.getEmployees()
+                    var employees = hrFeignClient.getEmployees(200)
                     employees.forEach(::println)
                     assert(employees.size == 2)
-                    /*
 
-                                        val deaf = dictionaryService.findWord("deaf")
-                                        println("deaf = $deaf")
+                    shouldThrow<BusinessFeignException> {
+                        hrFeignClient.getEmployees(400)
+                    }
 
-                                        val deaf2 = dictionaryFeignClient.findWord("deaf")
-                                        assert(deaf == deaf2)
-                    */
+                    shouldThrow<BusinessFeignException> {
+                        hrFeignClient.getEmployees(417)
+                    }
 
-                    /*
-                                    val characters = marvelFeignClient.findCharacters(limit = 2)
-                                    println(characters)
-                    */
+                    val deaf = dictionaryService.findWord("deaf")
+                    println("deaf = $deaf")
+
+                    val deaf2 = dictionaryFeignClient.findWord("deaf")
+                    assert(deaf == deaf2)
+
+                    val characters = marvelFeignClient.findCharacters(limit = 2)
+                    println(characters)
                 }
             }
 }

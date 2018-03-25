@@ -52,7 +52,7 @@ allprojects {
             force = true
         }
         compile "com.google.code.findbugs:jsr305:$findBugsVersion"
-        testCompile("io.kotlintest:kotlintest:$kotlinTestVersion") {
+        compile("io.kotlintest:kotlintest:$kotlinTestVersion") {
             exclude group: 'org.jetbrains.kotlin', module: 'kotlin-reflect'
             exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
         }

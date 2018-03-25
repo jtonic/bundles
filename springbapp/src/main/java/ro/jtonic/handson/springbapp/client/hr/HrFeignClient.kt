@@ -2,6 +2,7 @@ package ro.jtonic.handson.springbapp.client.hr
 
 import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
 import ro.jtonic.handson.springbapp.model.hr.Employee
 
 /**
@@ -12,5 +13,5 @@ import ro.jtonic.handson.springbapp.model.hr.Employee
 interface HrFeignClient {
 
     @GetMapping("employees")
-    fun getEmployees(): List<Employee>
+    fun getEmployees(@RequestParam("status_code") statusCode: Int?): List<Employee>
 }

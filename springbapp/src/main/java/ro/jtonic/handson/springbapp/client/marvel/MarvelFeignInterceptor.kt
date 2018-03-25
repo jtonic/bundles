@@ -5,7 +5,6 @@ import feign.RequestTemplate
 import org.apache.commons.codec.digest.DigestUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Component
 
 /**
  * Created by Antonel Ernest Pazargic on 27/02/2018.
@@ -15,7 +14,7 @@ const val PUBLIC_KEY = "0aad9058e396ce7cfc396d1027c84a13"
 const val PRIVATE_KEY = "3a6fc3446171a069e05d3f68183690f164ea0971"
 val ts = System.currentTimeMillis().toString()
 
-@Component
+//@Component //uncomment this and all feign clients requests will be affected by this interceptor
 class MarvelFeignInterceptor : RequestInterceptor {
 
     companion object {
