@@ -5,3 +5,9 @@ dependencies {
 
     testCompile "com.nhaarman:mockito-kotlin:$mockitoVersion"
 }
+
+kotlin {
+    experimental {
+        coroutines 'enable'
+    }
+}

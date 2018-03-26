@@ -1,4 +1,4 @@
-package ro.jtonic.tutorials.kt.tutorials.function
+package ro.jtonic.tutorials.kt.tutorials.fp
 
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
