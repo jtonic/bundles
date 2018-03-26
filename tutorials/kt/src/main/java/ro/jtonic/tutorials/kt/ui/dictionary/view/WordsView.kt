@@ -24,6 +24,13 @@ class WordsView : View("Dictionary") {
 
     override
     val root = form {
+        menubar {
+            menu("Penetration Tests") {
+                item("Generate curl","Shortcut+G").action {
+                    println("Generating the curl!!!")
+                }
+            }
+        }
 
         addClass(wrapper, appSizeRule, viewBgColor)
         fieldset("Personal info") {
