@@ -90,4 +90,15 @@ class WordsView : View("Dictionary") {
             }
         }
     }
+
+    init {
+        disableClose()
+        disableCreate()
+        disableDelete()
+        disableSave()
+    }
+
+    override fun onRefresh() {
+        lastNameTxt.text = ""
+    }
 }
