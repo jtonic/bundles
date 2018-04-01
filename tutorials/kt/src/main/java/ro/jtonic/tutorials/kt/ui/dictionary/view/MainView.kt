@@ -11,7 +11,9 @@ import tornadofx.*
  */
 class MainView : View("My View") {
 
-    override val root: BorderPane by fxml("/views/MainView.fxml")
+//    override val root: BorderPane by fxml("/views/MainView.fxml")
+    override val root: BorderPane by fxml()
+
     val counter = SimpleIntegerProperty()
     val counterLabel: Label by fxid()
 

@@ -3,6 +3,7 @@
 package ro.jtonic.tutorials.kt.ui.dictionary.app
 
 import javafx.application.Application
+import javafx.stage.Stage
 import ro.jtonic.tutorials.kt.ui.dictionary.css.Style
 import ro.jtonic.tutorials.kt.ui.dictionary.view.WordsView
 import tornadofx.*
@@ -12,8 +13,22 @@ import tornadofx.*
  * @author Antonel Ernest Pazargic
  */
 class DictionaryApp : App(WordsView::class, Style::class) {
+
     init {
         Rest.useApacheHttpClient()
+    }
+
+    override fun start(stage: Stage) {
+        super.start(stage)
+        stage.run {
+            height = 600.0
+            width = 800.0
+            centerOnScreen()
+            isAlwaysOnTop = false
+            isFullScreen = false
+            isIconified = false
+        }
+        stage.isAlwaysOnTop = true
     }
 }
 
