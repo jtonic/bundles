@@ -25,15 +25,6 @@ class WordsView : View("Dictionary") {
 
     override
     val root = borderpane {
-        top {
-            menubar {
-                menu("Help") {
-                    item("About", "Shortcut+A").action {
-                        println("About!!!")
-                    }
-                }
-            }
-        }
         center {
             squeezebox {
                 style {
