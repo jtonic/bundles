@@ -26,58 +26,60 @@ class WordsView : View("Dictionary") {
     override
     val root = borderpane {
         center {
-            squeezebox {
-                style {
-                    backgroundColor += c("#B2EBFF")
-                }
-                fold(title = "Penetration tests", expanded = true, closeable = false) {
-                    addClass(Style.viewBgColor)
-                    form {
-                        addClass(wrapper, viewBgColor)
-                        useMaxHeight = true
-                        useMaxWidth = true
-                        fieldset("Personal info") {
-                            field("First name:", Orientation.VERTICAL) {
-                                firstNameTxt = textfield { id = "firstNameTxt" }
-                            }
-                            field("Last name:") {
-                                lastNameTxt = textfield { id = "lastNameTxt" }
-                            }
-                            field("Birthday:") {
-                                birthDateDatePick = datepicker()
-                            }
-                            field("Person") {
-                                combobox(selectedItem, itemsGlobal) {
-                                    makeAutocompletable()
-                                    isEditable = false
+            scrollpane(fitToHeight = true, fitToWidth = true) {
+                squeezebox {
+                    style {
+                        backgroundColor += c("#B2EBFF")
+                    }
+                    fold(title = "Penetration tests", expanded = true, closeable = false) {
+                        addClass(viewBgColor)
+                        form {
+                            addClass(wrapper, viewBgColor)
+                            useMaxHeight = true
+                            useMaxWidth = true
+                            fieldset("Personal info") {
+                                field("First name:", Orientation.VERTICAL) {
+                                    firstNameTxt = textfield { id = "firstNameTxt" }
                                 }
+                                field("Last name:") {
+                                    lastNameTxt = textfield { id = "lastNameTxt" }
+                                }
+                                field("Birthday:") {
+                                    birthDateDatePick = datepicker()
+                                }
+                                field("Person") {
+                                    combobox(selectedItem, itemsGlobal) {
+                                        makeAutocompletable()
+                                        isEditable = false
+                                    }
+                                }
+
+
+                                resultLbl = label(text = "Nothing yet")
+
                             }
-
-
-                            resultLbl = label(text = "Nothing yet")
-
-                        }
-                        buttonbar {
-                            button("Save") {
-                                addClass(Style.buttonFaceColor)
-                                action {
-                                    runAsync {
-                                        val result = "${firstNameTxt.text} ${lastNameTxt.text}, born at ${birthDateDatePick.value} was saved!!!!"
-                                        println(result)
-                                        ui {
-                                            resultLbl.text = result
-                                            controller.getAT(result, resultLbl)
+                            buttonbar {
+                                button("Save") {
+                                    addClass(Style.buttonFaceColor)
+                                    action {
+                                        runAsync {
+                                            val result = "${firstNameTxt.text} ${lastNameTxt.text}, born at ${birthDateDatePick.value} was saved!!!!"
+                                            println(result)
+                                            ui {
+                                                resultLbl.text = result
+                                                controller.getAT(result, resultLbl)
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }
-                fold("Simple example") {
-                    addClass(Style.viewBgColor)
-                    log.info("simple example...")
-                    content = mainView.root
+                    fold("Simple example") {
+                        addClass(viewBgColor)
+                        log.info("simple example...")
+                        content = mainView.root
+                    }
                 }
             }
         }

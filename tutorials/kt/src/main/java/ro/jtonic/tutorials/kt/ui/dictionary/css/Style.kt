@@ -18,6 +18,8 @@ class Style : Stylesheet() {
     }
 
     init {
+        val buttonColor = c("#3460a9")
+
         appSizeRule {
             minHeight = 600.px
             maxWidth = 800.px
@@ -27,7 +29,6 @@ class Style : Stylesheet() {
             spacing = 10.px
         }
         buttonFaceColor {
-            val buttonColor = c("#3460a9")
             backgroundColor += buttonColor
             textFill = c("white")
         }
@@ -47,5 +48,7 @@ class Style : Stylesheet() {
             val color = c("#49b8fc")
             backgroundColor += color
         }
+
+        importStylesheet("/css/main.css")
     }
 }

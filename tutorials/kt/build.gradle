@@ -4,6 +4,8 @@ dependencies {
     compile "org.apache.httpcomponents:httpclient:$httpClient"
 
     testCompile "com.nhaarman:mockito-kotlin:$mockitoVersion"
+
+    compile 'de.jensd:fontawesomefx-materialdesignfont:1.7.22-4'
 }
 
 kotlin {
