@@ -10,9 +10,10 @@ import tornadofx.*
  * Created by Antonel Ernest Pazargic on 01/04/2018.
  * @author Antonel Ernest Pazargic
  */
-class MainWorkspace : Workspace() {
+class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
 
     private val wordsView: WordsView by inject()
+    private val documentationView: DocumentationView by inject()
 
     private val selectedEnv = SimpleStringProperty()
 
@@ -21,7 +22,35 @@ class MainWorkspace : Workspace() {
     init {
         add<MainMenu>()
         dock(wordsView)
-        headingContainer.hide()
+//        dock(documentationView)
+        backButton.arm()
+        headingContainer.removeFromParent()
+
+        with(rightDrawer) {
+            item("Links") {
+                webview {
+                    prefWidth = 600.0
+                    engine.load("http://www.google.com")
+                }
+            }
+/*
+            item("Links") {
+                listview(links) {
+                    cellFormat { link ->
+                        graphic = hyperlink(link.name).action {
+                            hostServices.showDocument(link.uri)
+                        }
+                    }
+                }
+            }
+            item("People") {
+                tableview(people) {
+                    column("Name", Person::name)
+                    column("Nick", Person::nick)
+                }
+            }
+*/
+        }
     }
 
     override fun onDock() {

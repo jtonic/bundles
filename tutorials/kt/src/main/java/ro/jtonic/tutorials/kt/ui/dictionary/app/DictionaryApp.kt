@@ -25,7 +25,7 @@ class DictionaryApp : App(MainWorkspace::class, Style::class) {
             width = 800.0
             centerOnScreen()
             isAlwaysOnTop = false
-            isFullScreen = false
+            isFullScreen = true
             isIconified = false
         }
         stage.isAlwaysOnTop = true

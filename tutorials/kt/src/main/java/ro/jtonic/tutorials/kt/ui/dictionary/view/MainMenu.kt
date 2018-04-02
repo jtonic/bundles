@@ -11,7 +11,9 @@ class MainMenu : UIComponent() {
     override val root = menubar {
         menu("Help") {
             item("About", "Shortcut+A").action {
-                println("About!!!")
+                find<About>().apply {
+                    openModal()
+                }
             }
         }
     }
