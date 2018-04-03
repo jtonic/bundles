@@ -7,10 +7,11 @@ import tornadofx.*
  * Created by Antonel Ernest Pazargic on 02/04/2018.
  * @author Antonel Ernest Pazargic
  */
-class About() {
-    val valueProperty = SimpleStringProperty()
-    var value by valueProperty
-    val keyProperty = SimpleStringProperty()
+class About(key: String, value: String) {
+
+    val keyProperty = SimpleStringProperty(key)
     var key by keyProperty
+    val valueProperty = SimpleStringProperty(value)
+    var value by valueProperty
 }
 
