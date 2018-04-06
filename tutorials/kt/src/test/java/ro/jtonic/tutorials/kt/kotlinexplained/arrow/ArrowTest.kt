@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.syntax.function.forwardCompose
+import arrow.syntax.function.compose
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -18,8 +18,8 @@ class ArrowTest {
         fun format(a: Int) = "Result: $a"
         fun printResult(result: String) = println(result)
 
-        (::inc forwardCompose ::format)(2) shouldBe "Result: 3"
+        (::format compose ::inc)(2) shouldBe "Result: 3"
 
-        (::inc forwardCompose ::format forwardCompose ::printResult)(2)
-     }
+        (::printResult compose ::format compose ::inc)(2)
+    }
 }
