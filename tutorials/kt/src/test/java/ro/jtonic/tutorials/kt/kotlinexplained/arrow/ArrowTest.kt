@@ -18,7 +18,7 @@ class ArrowTest {
     @Test
     fun `test andThen`() {
 
-        val inc = (::sum)(p2 = 1)
-        2 pipe inc pipe ::format shouldBe "Result: 3"
+        fun incBy(by: Int) = (::sum)(p2 = by)
+        2 pipe ::incBy pipe ::format shouldBe "Result: 3"
     }
 }
