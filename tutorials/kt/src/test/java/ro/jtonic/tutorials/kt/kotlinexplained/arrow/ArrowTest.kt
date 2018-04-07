@@ -1,5 +1,6 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
+import arrow.syntax.function.partially2
 import arrow.syntax.function.pipe
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
@@ -15,8 +16,9 @@ class ArrowTest {
     fun `test andThen`() {
 
         fun sum(a: Int, b: Int = 1) = a + b
+        val inc = ::sum.partially2(1)
         fun format(a: Int) = "Result: $a"
 
-        sum(2) pipe ::format shouldBe "Result: 3"
-     }
+        2 pipe inc pipe ::format shouldBe "Result: 3"
+    }
 }
