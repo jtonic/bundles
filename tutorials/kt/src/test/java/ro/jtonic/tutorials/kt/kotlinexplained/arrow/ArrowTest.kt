@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.syntax.function.compose
+import arrow.syntax.function.pipe
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -14,12 +14,9 @@ class ArrowTest {
     @Test
     fun `test andThen`() {
 
-        fun inc(a: Int) = a + 1
+        fun sum(a: Int, b: Int = 1) = a + b
         fun format(a: Int) = "Result: $a"
-        fun printResult(result: String) = println(result)
 
-        (::format compose ::inc)(2) shouldBe "Result: 3"
-
-        (::printResult compose ::format compose ::inc)(2)
-    }
+        sum(2) pipe ::format shouldBe "Result: 3"
+     }
 }
