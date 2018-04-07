@@ -1,8 +1,10 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.syntax.function.invoke
-import arrow.syntax.function.pipe
+import arrow.syntax.function.bind
+import io.kotlintest.matchers.beOfType
 import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldNot
+import io.kotlintest.matchers.shouldNotBe
 import org.junit.Test
 
 /**
@@ -12,13 +14,15 @@ import org.junit.Test
 
 class ArrowTest {
 
-    fun sum(a: Int, b: Int = 1) = a + b
-    fun format(a: Int) = "Result: $a"
+    fun strong(str: String) = "<strong>$str</strong>"
 
     @Test
-    fun `test andThen`() {
+    fun `test binding`() {
 
-        fun incBy(by: Int) = (::sum)(p2 = by)
-        (2 pipe ::incBy)(1) pipe ::format shouldBe "Result: 3" // this is 1 incremented by 2
+        val antonelStrong = ::strong.bind("Antonel")
+        antonelStrong shouldNotBe "<strong>Antonel</strong>"
+        antonelStrong shouldNot beOfType<String>()
+
+        antonelStrong() shouldBe "<strong>Antonel</strong>"
     }
 }
