@@ -1,7 +1,7 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
+import arrow.syntax.function.invoke
 import arrow.syntax.function.pipe
-import arrow.syntax.function.pipe2
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -18,6 +18,7 @@ class ArrowTest {
     @Test
     fun `test andThen`() {
 
-        (1 pipe2 ::sum)(2) pipe ::format shouldBe "Result: 3"
+        fun incBy(by: Int) = (::sum)(p2 = by)
+        (2 pipe ::incBy)(1) pipe ::format shouldBe "Result: 3" // this is 1 incremented by 2
     }
 }
