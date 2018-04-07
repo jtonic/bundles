@@ -1,8 +1,7 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
 import arrow.syntax.function.curried
-import arrow.syntax.function.reverse
-import arrow.syntax.function.uncurried
+import arrow.syntax.function.pipe
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -13,16 +12,13 @@ import org.junit.Test
 
 class ArrowTest {
 
-    fun div(id: String, body: String, style: String) = "<div id='$id' style='$style'>$body</div>"
+    fun sum(a: Int, b: Int = 1) = a + b
+    fun format(a: Int) = "$a"
 
     @Test
-    fun `test currying`() {
-        div("1", "Tony", "color:green") shouldBe "<div id='1' style='color:green'>Tony</div>"
-
-        val divCurried = ::div.reverse().curried()
-        val greenDiv1 = divCurried("color:green")
-        val greenDiv2 = greenDiv1.uncurried().reverse().curried()
-
-        greenDiv2("1")("Tony") shouldBe "<div id='1' style='color:green'>Tony</div>"
+    fun `test andThen`() {
+        val inc = ::sum.curried()(1)
+        2 pipe inc pipe ::format shouldBe "3"
     }
+
 }
