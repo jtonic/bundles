@@ -1,9 +1,11 @@
 package ro.jtonic.tutorials.kt.ui.dictionary.view
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon.BOOK_OPEN
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon.DELETE_CIRCLE
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.Tooltip
+import javafx.stage.Modality
 import tornadofx.*
 
 /**
@@ -13,7 +15,6 @@ import tornadofx.*
 class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
 
     private val wordsView: WordsView by inject()
-    private val documentationView: DocumentationView by inject()
 
     private val selectedEnv = SimpleStringProperty()
 
@@ -61,6 +62,16 @@ class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
             }
             action {
                 log.info("Add customer...")
+            }
+        }
+        button("Documentation") {
+            addClass("icon-only")
+            graphic = MaterialDesignIconView(BOOK_OPEN).apply {
+                glyphSize = 22
+            }
+            action {
+                log.info("Documentation...")
+                find<DocumentationView>().openWindow(modality = Modality.APPLICATION_MODAL)
             }
         }
         combobox(property = selectedEnv, values = environments) {

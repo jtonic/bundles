@@ -7,7 +7,7 @@
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="PASS_PARENT_ENVS" value="true" />
     <option name="MAIN_CLASS_NAME" value="ro.jtonic.tutorials.kt.ui.dictionary.app.DictionaryAppMain" />
-    <option name="WORKING_DIRECTORY" value="" />
+    <option name="WORKING_DIRECTORY" value="file://%MODULE_WORKING_DIR%" />
     <method />
   </configuration>
 </component>
