@@ -1,5 +1,6 @@
 package ro.jtonic.tutorials.kt.ui.dictionary.view
 
+import javafx.application.Platform
 import tornadofx.*
 
 /**
@@ -9,6 +10,11 @@ import tornadofx.*
 class MainMenu : UIComponent() {
 
     override val root = menubar {
+        menu("File") {
+            item("Exit", "Shortcut+X").action {
+                Platform.exit()
+            }
+        }
         menu("Help") {
             item("About", "Shortcut+A").action {
                 find<AboutView>().apply {
