@@ -66,4 +66,7 @@
     -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
 }
 
-
+.table-row-cell:interested-in {
+    -fx-selection-bar: #445762;
+    -fx-background-color: #608297;
+}

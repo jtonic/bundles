@@ -13,5 +13,9 @@ class About(key: String, value: String) {
     var key by keyProperty
     val valueProperty = SimpleStringProperty(value)
     var value by valueProperty
+
+    override fun toString(): String {
+        return "About(keyProperty=${keyProperty.value}, valueProperty=${valueProperty.value})"
+    }
 }
 
