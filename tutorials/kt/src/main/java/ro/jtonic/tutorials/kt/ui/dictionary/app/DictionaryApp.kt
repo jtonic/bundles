@@ -5,6 +5,7 @@ package ro.jtonic.tutorials.kt.ui.dictionary.app
 import javafx.application.Application
 import javafx.stage.Stage
 import ro.jtonic.tutorials.kt.ui.dictionary.css.Style
+import ro.jtonic.tutorials.kt.ui.dictionary.exception.AppErrorHandler
 import ro.jtonic.tutorials.kt.ui.dictionary.view.MainWorkspace
 import tornadofx.*
 
@@ -16,6 +17,7 @@ class DictionaryApp : App(MainWorkspace::class, Style::class) {
 
     init {
         Rest.useApacheHttpClient()
+        Thread.setDefaultUncaughtExceptionHandler(AppErrorHandler())
     }
 
     override fun start(stage: Stage) {
