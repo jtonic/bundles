@@ -24,13 +24,16 @@ class ConfigurationView : Fragment("Configuration") {
                     field(text = "Corporate Key", orientation = Orientation.HORIZONTAL) {
                         textfield(property = configModel.corporateKey) {
                             corporateKeyTxtFld = this
+                            validator(trigger = ValidationTrigger.OnChange(delay = 700)) {
+                                if (it.isNullOrBlank()) error("A non-empty corporateKey is required") else null
+                            }
                         }
                     }
                 }
                 buttonbar {
                     button("Apply") {
                         addClass(Style.buttonFaceColor)
-                        enableWhen(configModel.dirty)
+                        enableWhen(configModel.valid.and(configModel.dirty))
                         action {
                             if (configModel.isDirty) {
                                 configModel.commit()
@@ -50,6 +53,19 @@ class ConfigurationView : Fragment("Configuration") {
                 }
             }
         }
+    }
+
+    init {
+        root.run {
+            prefHeight = 300.0
+            prefWidth = 500.0
+            maxHeight = 900.0
+            maxWidth = 1_200.0
+        }
+    }
+
+    override fun onDock() {
+        configModel.validate(decorateErrors = false)
     }
 
     override fun onUndock() {

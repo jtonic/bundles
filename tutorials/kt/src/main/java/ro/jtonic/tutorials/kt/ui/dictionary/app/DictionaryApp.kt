@@ -32,9 +32,7 @@ class DictionaryApp : App(MainWorkspace::class, Style::class) {
             isFullScreen = false
             isIconified = false
         }
-        stage.isAlwaysOnTop = true
         setUserAgentStylesheet(STYLESHEET_MODENA)
-        
         this.configModel
     }
 }

@@ -6,7 +6,6 @@ import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.Tooltip
 import javafx.stage.Modality
-import javafx.stage.StageStyle
 import tornadofx.*
 
 /**
@@ -39,23 +38,6 @@ class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
                     engine.load("http://www.google.com")
                 }
             }
-/*
-            item("Links") {
-                listview(links) {
-                    cellFormat { link ->
-                        graphic = hyperlink(link.name).action {
-                            hostServices.showDocument(link.uri)
-                        }
-                    }
-                }
-            }
-            item("People") {
-                tableview(people) {
-                    column("Name", Person::name)
-                    column("Nick", Person::nick)
-                }
-            }
-*/
         }
     }
 
@@ -66,7 +48,7 @@ class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
                 glyphSize = 22
             }
             action {
-                configurationView.openModal(stageStyle = StageStyle.UTILITY, resizable = true)
+                configurationView.openModal(modality = Modality. NONE)
             }
         }
         button("Documentation") {
