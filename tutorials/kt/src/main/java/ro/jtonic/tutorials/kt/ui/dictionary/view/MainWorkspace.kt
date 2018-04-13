@@ -6,6 +6,7 @@ import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.Tooltip
 import javafx.stage.Modality
+import javafx.stage.StageStyle
 import tornadofx.*
 
 /**
@@ -15,6 +16,10 @@ import tornadofx.*
 class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
 
     private val wordsView: WordsView by inject()
+
+    private val configurationView: ConfigurationView by lazy {
+        find<ConfigurationView>()
+    }
 
     private val selectedEnv = SimpleStringProperty()
 
@@ -55,13 +60,13 @@ class MainWorkspace : Workspace(navigationMode = NavigationMode.Tabs) {
     }
 
     override fun onDock() {
-        button("Clear") {
+        button("Configuration...") {
             addClass("icon-only")
             graphic = MaterialDesignIconView(DELETE_CIRCLE).apply {
                 glyphSize = 22
             }
             action {
-                log.info("Add customer...")
+                configurationView.openModal(stageStyle = StageStyle.UTILITY, resizable = true)
             }
         }
         button("Documentation") {

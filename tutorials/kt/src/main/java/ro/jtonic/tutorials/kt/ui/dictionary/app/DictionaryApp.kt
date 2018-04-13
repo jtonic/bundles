@@ -6,6 +6,8 @@ import javafx.application.Application
 import javafx.stage.Stage
 import ro.jtonic.tutorials.kt.ui.dictionary.css.Style
 import ro.jtonic.tutorials.kt.ui.dictionary.exception.AppErrorHandler
+import ro.jtonic.tutorials.kt.ui.dictionary.model.Configuration
+import ro.jtonic.tutorials.kt.ui.dictionary.model.ConfigurationModel
 import ro.jtonic.tutorials.kt.ui.dictionary.view.MainWorkspace
 import tornadofx.*
 
@@ -31,8 +33,16 @@ class DictionaryApp : App(MainWorkspace::class, Style::class) {
             isIconified = false
         }
         stage.isAlwaysOnTop = true
+        setUserAgentStylesheet(STYLESHEET_MODENA)
+        
+        this.configModel
     }
 }
+
+internal val App.configModel: ConfigurationModel 
+    get() {
+        return ConfigurationModel(Configuration(config.string(Configuration.CONFIG.CORPORATE_KEY, "ws31wx")))
+    }
 
 fun main(args: Array<String>) {
     Application.launch(DictionaryApp::class.java, *args)
