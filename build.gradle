@@ -20,6 +20,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         maven {
             url "http://dl.bintray.com/kategory/maven"
         }

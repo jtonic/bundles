@@ -5,4 +5,5 @@ include 'tutorials:kt:oop'
 include 'tutorials:kt:model'
 include 'springbapp'
 include 'springboot2'
+include 'plugin'
 

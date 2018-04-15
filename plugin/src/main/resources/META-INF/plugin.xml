@@ -1,0 +1,18 @@
+<idea-plugin>
+    <id>ro.jtonic.bundles.plugin</id>
+    <name>Penetration Testing Support Tool</name>
+    <vendor email="antonel-ernest.pazargic@ing.com" url="http://www.ing.com">ING Tech</vendor>
+
+    <description><![CDATA[
+    Penetration testing support tools
+    ]]></description>
+    <change-notes/>
+
+    <actions>
+        <action class="ro.jtonic.handson.plugin.MyAction" id="GenerationTool"
+                text="Generate">
+            <add-to-group group-id="ToolsMenu"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart"/>
+        </action>
+    </actions>
+</idea-plugin>
