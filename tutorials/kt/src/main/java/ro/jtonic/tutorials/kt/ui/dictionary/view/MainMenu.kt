@@ -2,6 +2,7 @@ package ro.jtonic.tutorials.kt.ui.dictionary.view
 
 import javafx.application.Platform
 import org.controlsfx.control.Notifications
+import ro.jtonic.tutorials.kt.ui.dictionary.controller.HelloController
 import tornadofx.*
 
 /**
@@ -9,6 +10,8 @@ import tornadofx.*
  * @author Antonel Ernest Pazargic
  */
 class MainMenu : UIComponent() {
+
+    private val helloController: HelloController by inject()
 
     override val root = menubar {
         menu("File") {
@@ -28,6 +31,10 @@ class MainMenu : UIComponent() {
                     it.showInformation()
                 }
             }
+            item("Koin").action {
+                helloController.hello()
+            }
+
         }
         menu("Help") {
             item("About", "Shortcut+A").action {

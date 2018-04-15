@@ -5,6 +5,7 @@ import javafx.geometry.Orientation
 import javafx.scene.control.DatePicker
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
+import org.controlsfx.control.StatusBar
 import ro.jtonic.tutorials.kt.ui.dictionary.controller.WordController
 import ro.jtonic.tutorials.kt.ui.dictionary.css.Style
 import ro.jtonic.tutorials.kt.ui.dictionary.css.Style.Companion.viewBgColor
@@ -12,6 +13,7 @@ import ro.jtonic.tutorials.kt.ui.dictionary.css.Style.Companion.wrapper
 import tornadofx.*
 
 class WordsView : View("Dictionary") {
+
     private var firstNameTxt: TextField by singleAssign()
     private var lastNameTxt: TextField by singleAssign()
     private var birthDateDatePick: DatePicker by singleAssign()
@@ -84,12 +86,11 @@ class WordsView : View("Dictionary") {
             }
         }
         bottom {
-            hbox {
-                addClass(Style.statusBarFace)
-                label {
-                    text = ""
-                }
+            val statusBar = StatusBar().apply {
+                text = "Status:"
+                progress = -0.5
             }
+            this.add(statusBar)
         }
     }
 
