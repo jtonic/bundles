@@ -13,7 +13,7 @@ interface Injectable
  * inject lazily given dependency for KoinComponent
  * @param name - bean name / optional
  */
-inline fun <reified T> Injectable.injected(name: String = "", noinline parameters: Parameters = { emptyMap() }) =
+inline fun <reified T> Injectable.autowire(name: String = "", noinline parameters: Parameters = { emptyMap() }) =
     kotlin.lazy { (StandAloneContext.koinContext as KoinContext).get<T>(name, parameters) }
 
 /**

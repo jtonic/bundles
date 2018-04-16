@@ -1,7 +1,7 @@
 package ro.jtonic.tutorials.kt.ui.dictionary.controller
 
 import ro.jtonic.tutorials.kt.ui.dictionary.di.Injectable
-import ro.jtonic.tutorials.kt.ui.dictionary.di.injected
+import ro.jtonic.tutorials.kt.ui.dictionary.di.autowire
 import ro.jtonic.tutorials.kt.ui.dictionary.service.HelloService
 import tornadofx.*
 
@@ -11,7 +11,7 @@ import tornadofx.*
  */
 class HelloController : Controller(), Injectable {
 
-    private val helloService: HelloService by injected()
+    private val helloService: HelloService by autowire()
 
     fun hello() {
 
