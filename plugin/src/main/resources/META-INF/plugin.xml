@@ -1,10 +1,10 @@
 <idea-plugin>
     <id>ro.jtonic.bundles.plugin</id>
     <name>Penetration Testing Support Tool</name>
-    <vendor email="antonel-ernest.pazargic@ing.com" url="http://www.ing.com">ING Tech</vendor>
+    <vendor email="antonel.pazargic@gmail.com" url="http://www.example.com">Jtonic ITech</vendor>
 
     <description><![CDATA[
-    Penetration testing support tools
+    Plugin example for getting up to speed with Idea Plugin Development
     ]]></description>
     <change-notes/>
 
