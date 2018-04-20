@@ -4,9 +4,9 @@ import arrow.core.toT
 import arrow.data.Success
 import arrow.data.Try
 import arrow.data.ev
-import arrow.data.functor
-import arrow.syntax.function.pipe
+import arrow.data.monad
 import arrow.syntax.tuples.plus
+import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -52,8 +52,12 @@ class ArrowTest {
 
         fun pure4(i: Int) = i + 1
 
-        with(Try.functor()) {
-            1 pipe ::pure1 pipe ::inpure2 pipe lift(pure3) pipe lift(::pure4)
-        }.ev().fold({ "not found" }) { it } shouldBe 5
+        Try.monad().binding {
+            val v1 = pure1(1)
+            val v2 = inpure2(v1).bind()
+            val v3 = pure3(v2)
+            val result = pure4(v3)
+            result
+        }.ev().fold( { -1 }, { it } ) shouldBe 5
     }
 }
