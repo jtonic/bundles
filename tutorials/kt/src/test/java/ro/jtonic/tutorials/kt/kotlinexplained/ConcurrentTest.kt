@@ -14,15 +14,16 @@ class ConcurrentTest {
 
     @Test
     fun `coroutines example`() {
+        TimeUnit.SECONDS.sleep(10)
 
         runBlocking {
-            val job = launch {
-                println("Kotlin!!!")
-                delay(200, TimeUnit.MILLISECONDS)
+            val jobs = List(10_000) {
+                launch {
+                    print(".")
+                    delay(200, TimeUnit.MILLISECONDS)
+                }
             }
-
-            print("Hello ")
-            job.join()
+            jobs.forEach { it.join() }
         }
     }
 }
