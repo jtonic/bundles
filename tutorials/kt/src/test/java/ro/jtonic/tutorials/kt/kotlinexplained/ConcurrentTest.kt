@@ -1,8 +1,10 @@
 package ro.jtonic.tutorials.kt.kotlinexplained
 
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.thread
 
 /**
  * Created by Antonel Ernest Pazargic on 21/04/2018.
@@ -11,16 +13,16 @@ import kotlin.concurrent.thread
 class ConcurrentTest {
 
     @Test
-    fun `threads example`() {
-        TimeUnit.SECONDS.sleep(10)
-        val threads = List(3_000) {
-            thread {
-                TimeUnit.SECONDS.sleep(1)
-                print(".")
-            }
-        }
-        threads.forEach(Thread::join)
+    fun `coroutines example`() {
 
-        TimeUnit.HOURS.sleep(1)
+        runBlocking {
+            launch {
+                println("Kotlin!!!")
+                delay(200, TimeUnit.MILLISECONDS)
+            }
+
+            print("Hello ")
+            delay(500, TimeUnit.MILLISECONDS)
+        }
     }
 }
