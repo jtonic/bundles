@@ -17,10 +17,10 @@ class ConcurrentTest {
         TimeUnit.SECONDS.sleep(10)
 
         runBlocking {
-            val jobs = List(10_000) {
+            val jobs = List(1_000_000) {
                 launch {
                     print(".")
-                    delay(200, TimeUnit.MILLISECONDS)
+                    delay(1, TimeUnit.SECONDS)
                 }
             }
             jobs.forEach { it.join() }
