@@ -16,13 +16,13 @@ class ConcurrentTest {
     fun `coroutines example`() {
 
         runBlocking {
-            launch {
+            val job = launch {
                 println("Kotlin!!!")
                 delay(200, TimeUnit.MILLISECONDS)
             }
 
             print("Hello ")
-            delay(500, TimeUnit.MILLISECONDS)
+            job.join()
         }
     }
 }
