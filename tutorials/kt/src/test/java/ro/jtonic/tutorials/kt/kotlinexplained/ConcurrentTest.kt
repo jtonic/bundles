@@ -12,8 +12,8 @@ class ConcurrentTest {
 
     @Test
     fun `threads example`() {
-        TimeUnit.SECONDS.sleep(5)
-        val threads = List(1_000) {
+        TimeUnit.SECONDS.sleep(10)
+        val threads = List(10_000) {
             thread {
                 TimeUnit.SECONDS.sleep(1)
                 print(".")
