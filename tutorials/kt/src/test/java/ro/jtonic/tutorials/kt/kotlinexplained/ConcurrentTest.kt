@@ -1,5 +1,6 @@
 package ro.jtonic.tutorials.kt.kotlinexplained
 
+import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
@@ -17,13 +18,22 @@ class ConcurrentTest {
         TimeUnit.SECONDS.sleep(10)
 
         runBlocking {
-            val jobs = List(1_000_000) {
-                launch {
-                    print(".")
-                    delay(1, TimeUnit.SECONDS)
+
+            val channel = Channel<Char>()
+
+            val job = launch {
+                repeat(10_000) {
+                    delay(1, TimeUnit.MILLISECONDS)
+                    channel.send('.')
+                    delay(1, TimeUnit.MILLISECONDS)
+                    channel.send(',')
                 }
+                channel.close()
             }
-            jobs.forEach { it.join() }
+            for(ch in channel) {
+                print(ch)
+            }
+            job.join()
         }
     }
 }
