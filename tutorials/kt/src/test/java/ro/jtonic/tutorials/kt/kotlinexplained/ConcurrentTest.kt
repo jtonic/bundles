@@ -12,11 +12,11 @@ class ConcurrentTest {
 
     @Test
     fun `simple kt thread example`() {
-        thread {
+        val th1 = thread {
             TimeUnit.MILLISECONDS.sleep(200)
             println("Kotlin!")
         }
         print("Hello ")
-        TimeUnit.MILLISECONDS.sleep(500)
+        th1.join(5_000)
     }
 }
