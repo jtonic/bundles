@@ -1,8 +1,7 @@
 package ro.jtonic.tutorials.kt.kotlinexplained
 
-import kotlinx.coroutines.experimental.channels.Channel
+import kotlinx.coroutines.experimental.channels.produce
 import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
 import java.util.concurrent.TimeUnit
@@ -19,9 +18,7 @@ class ConcurrentTest {
 
         runBlocking {
 
-            val channel = Channel<Char>()
-
-            val job = launch {
+            val channel = produce<Char> {
                 repeat(10_000) {
                     delay(1, TimeUnit.MILLISECONDS)
                     channel.send('.')
@@ -33,7 +30,6 @@ class ConcurrentTest {
             for(ch in channel) {
                 print(ch)
             }
-            job.join()
         }
     }
 }
