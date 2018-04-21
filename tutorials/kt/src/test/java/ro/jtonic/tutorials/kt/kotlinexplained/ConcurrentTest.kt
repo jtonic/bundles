@@ -11,12 +11,16 @@ import kotlin.concurrent.thread
 class ConcurrentTest {
 
     @Test
-    fun `simple kt thread example`() {
-        val th1 = thread {
-            TimeUnit.MILLISECONDS.sleep(200)
-            println("Kotlin!")
+    fun `threads example`() {
+        TimeUnit.SECONDS.sleep(5)
+        val threads = List(1_000) {
+            thread {
+                TimeUnit.SECONDS.sleep(1)
+                print(".")
+            }
         }
-        print("Hello ")
-        th1.join(5_000)
+        threads.forEach(Thread::join)
+
+        TimeUnit.HOURS.sleep(1)
     }
 }
