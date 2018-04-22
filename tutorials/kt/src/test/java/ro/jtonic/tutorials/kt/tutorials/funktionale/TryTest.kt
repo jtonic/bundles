@@ -1,9 +1,9 @@
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
-import arrow.data.Failure
-import arrow.data.Success
-import arrow.data.Try
-import arrow.data.getOrElse
+import arrow.core.Failure
+import arrow.core.Success
+import arrow.core.Try
+import arrow.core.getOrElse
 import io.kotlintest.matchers.beOfType
 import io.kotlintest.matchers.fail
 import io.kotlintest.matchers.should

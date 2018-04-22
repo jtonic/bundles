@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
-import arrow.data.Try
+import arrow.core.Try
 import arrow.legacy.disjunctionTry
 import io.kotlintest.matchers.*
 import org.junit.Test

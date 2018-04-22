@@ -1,11 +1,8 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.core.toT
-import arrow.data.Success
-import arrow.data.Try
-import arrow.data.ev
-import arrow.data.monad
-import arrow.syntax.tuples.plus
+import arrow.core.Try
+import arrow.core.fix
+import arrow.core.monad
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
@@ -21,16 +18,17 @@ typealias Salary = Int
 
 class ArrowTest {
 
+/*
     @Test
     fun `the beauty of working with arrow TupleX`() {
 
-        val salary: Salary = 100_000
-        val age: Age = 48
         val siblingsNo: SiblingsNo = 3
 
-        val t2 = "Antonel" toT salary
+        val salary: Salary = 100_000
+        val t2: Tuple2<String, Salary> = "Antonel" toT salary
+        val age: Age = 48
+        val t3 = t2.copy() + age
 
-        val t3 = t2 + age
         val t4 = t3 + siblingsNo
 
         t2.run { a shouldBe "Antonel"; b shouldBe salary }
@@ -38,6 +36,7 @@ class ArrowTest {
         t4.d shouldBe siblingsNo
 
     }
+*/
 
     @Test
     fun `composition of pure and inpure functions`() {
@@ -45,7 +44,7 @@ class ArrowTest {
         fun pure1(i: Int) = i + 1
 
         fun inpure2(i: Int) : Try<Int> {
-            return Success(i + 1)
+            return Try.Success(i + 1)
         }
 
         val pure3 = ::pure1
@@ -58,6 +57,6 @@ class ArrowTest {
             val v3 = pure3(v2)
             val result = pure4(v3)
             result
-        }.ev().fold( { -1 }, { it } ) shouldBe 5
+        }.fix().fold( { -1 }, { it } ) shouldBe 5
     }
 }
