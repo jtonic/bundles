@@ -58,8 +58,9 @@ allprojects {
             exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
         }
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinCoroutinesVersion"
+
         compile "io.arrow-kt:arrow-free:$arrowVersion"
-        compile "io.arrow-kt:arrow-data:$arrowVersion"
+        compile "io.arrow-kt:arrow-core:$arrowVersion"
         compile "io.arrow-kt:arrow-syntax:$arrowVersion"
     }
 

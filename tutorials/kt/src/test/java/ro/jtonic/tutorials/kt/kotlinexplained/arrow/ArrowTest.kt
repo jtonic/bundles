@@ -4,6 +4,8 @@ import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
 import arrow.typeclasses.binding
+import io.kotlintest.matchers.beOfType
+import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -15,14 +17,15 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `applicatives example`() {
+    fun `Option as applicative example`() {
 
-        fun <T, R> List<T>.ap(fab: List<(T) -> R>): List<R> = fab.flatMap { f -> this.map(f) }
-
-        val lst1 = listOf(1, 2, 3)
-        val apps = listOf<(Int) -> Int>({ it + 1 }, { it * 2 })
-        val result = lst1.ap(apps).joinToString()
-        println(result)
+        val opt1 = Option.pure(1)
+        val opt2 = Option.pure(2)
+        val combination: Option<Int> = opt1.ap(opt2.map { f -> { t: Int -> f + t } })
+        combination.let {
+            it should beOfType<Option.Some<Int>>()
+            (it as Option.Some<Int>).value shouldBe 3
+        }
     }
 
     @Test

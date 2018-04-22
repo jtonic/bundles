@@ -2,7 +2,7 @@ package ro.jtonic.tutorials.kt.fp.kategory
 
 import arrow.core.Option
 import arrow.core.Some
-import arrow.core.ev
+import arrow.core.fix
 import arrow.core.monad
 import arrow.typeclasses.binding
 
@@ -25,8 +25,8 @@ fun main(args: Array<String>) {
         val nuke = arm().bind()
         val target = aim().bind()
         val impact = launch(nuke, target).bind()
-        yields(impact)
-    }.ev()
+        impact
+    }.fix()
 
     println("launch() = $eval")
 }

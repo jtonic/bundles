@@ -1,8 +1,8 @@
 package ro.jtonic.tutorials.kt.fp.kategory
 
-import arrow.data.Try
-import arrow.data.ev
-import arrow.data.monad
+import arrow.core.Try
+import arrow.core.fix
+import arrow.core.monad
 import arrow.typeclasses.binding
 
 class ArmException(msg: String) : RuntimeException(msg)
@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
         val nuke = TryExample.arm().bind()
         val target = TryExample.aim().bind()
         val impact = TryExample.lauch(nuke, target).bind()
-        yields(impact)
-    }.ev()
+        impact
+    }.fix()
     ev.fold({ println("Exception: ${it.message}") }, {println("Got the impact: $it")})
 }
