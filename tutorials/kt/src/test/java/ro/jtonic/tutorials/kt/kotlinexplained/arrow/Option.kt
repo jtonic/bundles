@@ -14,10 +14,7 @@ sealed class Option<out T> {
 }
 
 fun <T, R> Option<T>.map(tr: (T) -> R): Option<R> =
-        when (this) {
-            is Option.None -> Option.None
-            is Option.Some -> Option.Some(tr(value))
-        }
+        flatMap { Option.Some(tr(it)) }
 
 fun <T, R> Option<T>.flatMap(tr: (T) -> Option<R>): Option<R> =
         when (this) {
