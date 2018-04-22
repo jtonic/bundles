@@ -15,13 +15,14 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `function composition example using functor`() {
+    fun `applicatives example`() {
 
-        fun <A, B, C> ((A) -> B).map(tr: (B) -> C): (A) -> C =
-                { i -> tr(this(i)) }
+        fun <T, R> List<T>.ap(fab: List<(T) -> R>): List<R> = fab.flatMap { f -> this.map(f) }
 
-        val composedFunctions = { i: Int -> i.toString() }.map { "result $it" }
-        composedFunctions(1) shouldBe "result 1"
+        val lst1 = listOf(1, 2, 3)
+        val apps = listOf<(Int) -> Int>({ it + 1 }, { it * 2 })
+        val result = lst1.ap(apps).joinToString()
+        println(result)
     }
 
     @Test
