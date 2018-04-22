@@ -1,9 +1,14 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
+import arrow.core.None
+import arrow.core.Some
 import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
+import arrow.core.toOption
 import arrow.typeclasses.binding
+import io.kotlintest.matchers.beOfType
+import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -11,7 +16,6 @@ import org.junit.Test
  * Created by Antonel Ernest Pazargic on 06/04/2018.
  * @author Antonel Ernest Pazargic
  */
-
 class ArrowTest {
 
     @Test
@@ -21,10 +25,13 @@ class ArrowTest {
         fun length(str: String?): Int? = str?.length
 
         var a: String? = null
-        length(a) shouldBe null
+        length(a).toOption() shouldBe None
 
         a = "123"
-        length(a) shouldBe 3
+        length(a).toOption().let {
+            it should beOfType <Some<Int>>()
+            (it as Some<Int>).t shouldBe 3
+        }
     }
 
     @Test
