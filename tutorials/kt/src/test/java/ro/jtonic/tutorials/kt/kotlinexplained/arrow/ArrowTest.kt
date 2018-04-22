@@ -1,11 +1,11 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
 import arrow.core.None
+import arrow.core.Option
 import arrow.core.Some
 import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
-import arrow.core.toOption
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.beOfType
 import io.kotlintest.matchers.should
@@ -25,10 +25,10 @@ class ArrowTest {
         fun length(str: String?): Int? = str?.length
 
         var a: String? = null
-        length(a).toOption() shouldBe None
+        Option.fromNullable(length(a)) shouldBe None
 
         a = "123"
-        length(a).toOption().let {
+        Option.fromNullable(length(a)).let {
             it should beOfType <Some<Int>>()
             (it as Some<Int>).t shouldBe 3
         }
