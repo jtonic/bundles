@@ -12,38 +12,24 @@ import org.junit.Test
  * @author Antonel Ernest Pazargic
  */
 
-typealias Age = Int
-typealias SiblingsNo = Int
-typealias Salary = Int
-
 class ArrowTest {
 
-/*
     @Test
-    fun `the beauty of working with arrow TupleX`() {
+    fun `function composition example using functor`() {
 
-        val siblingsNo: SiblingsNo = 3
+        fun <A, B, C> ((A) -> B).map(tr: (B) -> C): (A) -> C =
+                { i -> tr(this(i)) }
 
-        val salary: Salary = 100_000
-        val t2: Tuple2<String, Salary> = "Antonel" toT salary
-        val age: Age = 48
-        val t3 = t2.copy() + age
-
-        val t4 = t3 + siblingsNo
-
-        t2.run { a shouldBe "Antonel"; b shouldBe salary }
-        t3.c shouldBe age
-        t4.d shouldBe siblingsNo
-
+        val composedFunctions = { i: Int -> i.toString() }.map { "result $it" }
+        composedFunctions(1) shouldBe "result 1"
     }
-*/
 
     @Test
     fun `composition of pure and inpure functions`() {
 
         fun pure1(i: Int) = i + 1
 
-        fun inpure2(i: Int) : Try<Int> {
+        fun inpure2(i: Int): Try<Int> {
             return Try.Success(i + 1)
         }
 
@@ -57,6 +43,6 @@ class ArrowTest {
             val v3 = pure3(v2)
             val result = pure4(v3)
             result
-        }.fix().fold( { -1 }, { it } ) shouldBe 5
+        }.fix().fold({ -1 }, { it }) shouldBe 5
     }
 }
