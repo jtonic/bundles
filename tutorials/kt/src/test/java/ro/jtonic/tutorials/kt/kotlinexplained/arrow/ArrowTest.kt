@@ -3,7 +3,6 @@ package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 import arrow.core.Either
 import arrow.core.Try
 import arrow.core.fix
-import arrow.core.identity
 import arrow.core.monad
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
@@ -23,7 +22,8 @@ class ArrowTest {
                 if (str == null) Either.left("empty stream") else Either.right(str.length)
 
         val a = "123"
-        val result = length(a).fold({ -1 }, ::identity)
+        val option = length(a).toOption()
+        val result = option.orNull() ?: -1
         result shouldNotBe -1
         result shouldBe 3
     }
