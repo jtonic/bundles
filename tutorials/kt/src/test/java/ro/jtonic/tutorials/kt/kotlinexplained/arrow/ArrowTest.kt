@@ -19,18 +19,28 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `without arrow Option`() {
+    fun `with arrow Option`() {
 
-        // using kotlin nullable types
         fun length(str: String?): Option<Int> = if (str == null) None else Some(str.length)
 
-        var a: String? = null
-        length(a) shouldBe None
+        // arrow Option is a Monad, so, we can use its flatMap implementation.
+        // this is ugly, isn't it
+        fun length(str1: String?, str2: String?): Option<Int> =
+                length(str1).flatMap {
+                    l1 -> length(str2).flatMap {
+                        l2 -> Some(l1 + l2)
+                    }
+                }
 
-        a = "123"
-        length(a).let {
+        var a1: String? = null
+        var a2: String? = "123"
+        length(a1, a2) shouldBe None
+
+        a1 = "123"
+        a2 = "45"
+        length(a1, a2).let {
             it should beOfType<Some<Int>>()
-            (it as Some<Int>).t shouldBe 3
+            (it as Some<Int>).t shouldBe 5
         }
     }
 
