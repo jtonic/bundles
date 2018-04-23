@@ -3,6 +3,7 @@ package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
+import arrow.instances.monoid
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
@@ -13,23 +14,12 @@ import org.junit.Test
  */
 class ArrowTest {
 
-    interface Monoid<A> {
-        val zero: A
-        fun op(a: A, b: A): A
-    }
-
-    class StringMonoid : Monoid<String> {
-        override val zero: String = ""
-        override fun op(a: String, b: String) = a + b
-    }
-
     @Test
     fun `monoid definition`() {
-        val m1 = StringMonoid()
-        m1.op(m1.zero, "one") shouldBe "one"
-
-        StringMonoid().op("1", StringMonoid().op("2", "3")) shouldBe
-                StringMonoid().op(StringMonoid().op("1", "2"), "3")
+        String.monoid().empty() + "aaa" shouldBe "aaa"
+        String.monoid().run { listOf("a", "b", "c").combineAll() } shouldBe "abc"
+        String.monoid().run { listOf("a", "b").combineAll() } + "c" shouldBe
+                String.monoid().run { "a" } + String.monoid().run { listOf("b", "c").combineAll() }
     }
 
     @Test
