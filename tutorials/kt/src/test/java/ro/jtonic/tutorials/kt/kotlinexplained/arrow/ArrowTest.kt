@@ -1,7 +1,5 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.core.Failure
-import arrow.core.Success
 import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
@@ -15,15 +13,23 @@ import org.junit.Test
  */
 class ArrowTest {
 
+    interface Monoid<A> {
+        val zero: A
+        fun op(a: A, b: A): A
+    }
+
+    class StringMonoid : Monoid<String> {
+        override val zero: String = ""
+        override fun op(a: String, b: String) = a + b
+    }
+
     @Test
-    fun `arrow Try`() {
+    fun `monoid definition`() {
+        val m1 = StringMonoid()
+        m1.op(m1.zero, "one") shouldBe "one"
 
-        fun length(str: String?): Try<Int> =
-                if (str == null) Failure(IllegalArgumentException("Empty string")) else Success(str.length)
-
-        length("1").isSuccess() shouldBe true
-
-        length(null).isFailure() shouldBe true
+        StringMonoid().op("1", StringMonoid().op("2", "3")) shouldBe
+                StringMonoid().op(StringMonoid().op("1", "2"), "3")
     }
 
     @Test
