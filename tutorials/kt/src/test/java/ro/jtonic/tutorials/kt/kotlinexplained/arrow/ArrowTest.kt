@@ -1,6 +1,7 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.core.Either
+import arrow.core.Failure
+import arrow.core.Success
 import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
@@ -15,14 +16,14 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `arrow Either - monads comprehension`() {
+    fun `arrow Try`() {
 
-        fun length(str: String?): Either<String, Int> =
-                if (str == null) Either.left("empty stream") else Either.right(str.length)
+        fun length(str: String?): Try<Int> =
+                if (str == null) Failure(IllegalArgumentException("Empty string")) else Success(str.length)
 
         val a1 = "123"
         val a2 = "56"
-        Either.monad<String>().binding {
+        Try.monad().binding {
             val l1 = length(a1).bind()
             val l2 = length(a2).bind()
             l1 + l2
