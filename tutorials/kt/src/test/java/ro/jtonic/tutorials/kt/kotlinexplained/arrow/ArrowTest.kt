@@ -22,14 +22,14 @@ class ArrowTest {
     fun `without arrow Option`() {
 
         // using kotlin nullable types
-        fun length(str: String?): Int? = str?.length
+        fun length(str: String?): Option<Int> = if (str == null) None else Some(str.length)
 
         var a: String? = null
-        Option.fromNullable(length(a)) shouldBe None
+        length(a) shouldBe None
 
         a = "123"
-        Option.fromNullable(length(a)).let {
-            it should beOfType <Some<Int>>()
+        length(a).let {
+            it should beOfType<Some<Int>>()
             (it as Some<Int>).t shouldBe 3
         }
     }
