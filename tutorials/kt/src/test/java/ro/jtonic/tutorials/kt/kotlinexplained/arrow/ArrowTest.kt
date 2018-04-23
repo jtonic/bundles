@@ -1,14 +1,10 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.core.None
-import arrow.core.Option
-import arrow.core.Some
+import arrow.core.Either
 import arrow.core.Try
 import arrow.core.fix
 import arrow.core.monad
 import arrow.typeclasses.binding
-import io.kotlintest.matchers.beOfType
-import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -19,29 +15,16 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `with arrow Option`() {
+    fun `arrow Either`() {
 
-        fun length(str: String?): Option<Int> = if (str == null) None else Some(str.length)
+        fun length(str: String?): Either<String, Int> =
+                if (str == null) Either.left("empty stream") else Either.right(str.length)
 
-        // arrow Option is a Monad, so, we can use its flatMap implementation.
-        // this is ugly, isn't it
-        fun length(str1: String?, str2: String?): Option<Int> =
-                length(str1).flatMap {
-                    l1 -> length(str2).flatMap {
-                        l2 -> Some(l1 + l2)
-                    }
-                }
+        var a: String? = null
+        length(a).isLeft()
 
-        var a1: String? = null
-        var a2: String? = "123"
-        length(a1, a2) shouldBe None
-
-        a1 = "123"
-        a2 = "45"
-        length(a1, a2).let {
-            it should beOfType<Some<Int>>()
-            (it as Some<Int>).t shouldBe 5
-        }
+        a = "123"
+        length(a).isRight()
     }
 
     @Test
