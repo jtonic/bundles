@@ -6,7 +6,6 @@ import arrow.core.fix
 import arrow.core.monad
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
-import io.kotlintest.matchers.shouldNotBe
 import org.junit.Test
 
 /**
@@ -16,16 +15,18 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `arrow Either`() {
+    fun `arrow Either - monads comprehension`() {
 
         fun length(str: String?): Either<String, Int> =
                 if (str == null) Either.left("empty stream") else Either.right(str.length)
 
-        val a = "123"
-        val option = length(a).toOption()
-        val result = option.orNull() ?: -1
-        result shouldNotBe -1
-        result shouldBe 3
+        val a1 = "123"
+        val a2 = "56"
+        Either.monad<String>().binding {
+            val l1 = length(a1).bind()
+            val l2 = length(a2).bind()
+            l1 + l2
+        }.fix().toOption().orNull() ?: -1 shouldBe 5
     }
 
     @Test
