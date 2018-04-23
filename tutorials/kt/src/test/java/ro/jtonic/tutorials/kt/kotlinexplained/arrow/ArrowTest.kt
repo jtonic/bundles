@@ -21,13 +21,9 @@ class ArrowTest {
         fun length(str: String?): Try<Int> =
                 if (str == null) Failure(IllegalArgumentException("Empty string")) else Success(str.length)
 
-        val a1 = "123"
-        val a2 = "56"
-        Try.monad().binding {
-            val l1 = length(a1).bind()
-            val l2 = length(a2).bind()
-            l1 + l2
-        }.fix().toOption().orNull() ?: -1 shouldBe 5
+        length("1").isSuccess() shouldBe true
+
+        length(null).isFailure() shouldBe true
     }
 
     @Test
