@@ -3,9 +3,11 @@ package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 import arrow.core.Either
 import arrow.core.Try
 import arrow.core.fix
+import arrow.core.identity
 import arrow.core.monad
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldNotBe
 import org.junit.Test
 
 /**
@@ -20,11 +22,10 @@ class ArrowTest {
         fun length(str: String?): Either<String, Int> =
                 if (str == null) Either.left("empty stream") else Either.right(str.length)
 
-        var a: String? = null
-        length(a).isLeft()
-
-        a = "123"
-        length(a).isRight()
+        val a = "123"
+        val result = length(a).fold({ -1 }, ::identity)
+        result shouldNotBe -1
+        result shouldBe 3
     }
 
     @Test
