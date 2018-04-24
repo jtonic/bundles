@@ -3,11 +3,7 @@ package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 import arrow.core.Either
 import arrow.core.Option
 import arrow.core.constant
-import arrow.core.fix
 import arrow.core.identity
-import arrow.core.monad
-import arrow.syntax.function.pipe
-import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -38,23 +34,22 @@ class ArrowTest {
         }
 
 
+        val bradPittMovies = imdbFinder("Brad Pitt")
+        val angelinaJolieMovies = imdbFinder("Angelina Jolie")
         val antonelErnestPazargicMovies = imdbFinder("Antonel Ernest Pazargic")
         val magdaPalimariuMovies = imdbFinder("Magda")
 
         // *****************************************
-        // monads comprehension.
-        // a little bit better
+        // monads transformers.
+        //
+        // THE FOLLOWING WORKS NO LONGER IN V.0.7.0
+        //
         // *****************************************
-        val familyMovies = Either.monad<String>().binding {
-            val angelinaJolieMovies = imdbFinder("Angelina Jolie").bind()
-            val bradPittMovies = imdbFinder("Brad Pitt")
-            angelinaJolieMovies.map { ajm -> bradPittMovies.map { bpm -> ajm + bpm } }
-        }.fix()
+/*        OptionT.monad<EitherKindPartial<List<String>>>().binding {
+            val a: Int = OptionT(bradPittMovies).bind()
+            val p: Int = OptionT(angelinaJolieMovies).bind()
+            (a - p).absoluteValue
+        }.value().ev()*/
 
-        familyMovies.fold(::identity, { op1 ->
-            op1.fold({ "Not found" }, { op2 ->
-                op2.fold({ "Not found" }, { op3 -> op3.toString()})
-            })
-        }) pipe ::println
     }
 }
