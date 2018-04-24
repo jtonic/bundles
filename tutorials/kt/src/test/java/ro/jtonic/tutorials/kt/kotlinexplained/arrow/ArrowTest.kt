@@ -1,12 +1,10 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.core.Try
+import arrow.core.Either
+import arrow.core.Option
 import arrow.core.constant
-import arrow.core.fix
 import arrow.core.identity
-import arrow.core.monad
 import arrow.syntax.function.pipe
-import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
 
@@ -26,20 +24,36 @@ class ArrowTest {
     @Test
     fun `monads comprehension - composition of pure and inpure functions`() {
 
-        fun pure1(i: Int) = i + 1
+        fun imdbFinder(artistName: String): Either<String, arrow.core.Option<List<String>>> {
+            // imdb db search
+            return when (artistName) {
+                "Brad Pitt" -> Either.right(arrow.core.Option.just(listOf("Troy", "The inglorious bastards")))
+                "Angelina Jolie" -> Either.right(arrow.core.Option.just(listOf("Lara Croft", "Original Sin", "Changeling")))
+                "Antonel Ernest Pazargic" -> Either.right(Option.empty())
+                else -> Either.left("Error accessing db...")
+            }
+        }
 
-        fun inpure2(i: Int): Try<Int> = Try.Success(i + 1)
+        val bradPittMovies = imdbFinder("Brad Pitt")
+        val angelinaJolieMovies = imdbFinder("Angelina Jolie")
+        val antonelErnestPazargicMovies = imdbFinder("Antonel Ernest Pazargic")
+        val magdaPalimariuMovies = imdbFinder("Magda")
 
-        val pure3 = ::pure1
-
-        fun inpure4(i: Int): Try<String> = Try.Success((i + 1).toString())
-
-        Try.monad().binding {
-            val v1 = pure1(1)
-            val v2 = inpure2(v1).bind()
-            val v3 = pure3(v2)
-            val result = inpure4(v3).bind()
-            result
-        }.fix().fold({ "no value" }, { it }) pipe ::println
+        // *****************************************
+        // super ugly
+        // *****************************************
+        val bradAndAngieFamilyMovie =
+                bradPittMovies.map { bpmo ->
+                    bpmo.map { bpm ->
+                        angelinaJolieMovies.map { ajmo -> ajmo.map { ajm -> bpm + ajm } }
+                    }
+                }
+        bradAndAngieFamilyMovie.fold(::identity,
+                { op1 ->
+                    op1.fold ({ "None" }, { op2 ->
+                        op2.fold(::identity,
+                                { op3 -> op3.fold ({ "none" }, { it.toString() }) })
+                    })
+                }) pipe ::println
     }
 }
