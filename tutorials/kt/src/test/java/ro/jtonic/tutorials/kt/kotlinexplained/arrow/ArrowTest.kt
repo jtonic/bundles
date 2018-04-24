@@ -1,9 +1,10 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
 import arrow.core.Try
+import arrow.core.constant
 import arrow.core.fix
+import arrow.core.identity
 import arrow.core.monad
-import arrow.instances.monoid
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
@@ -15,11 +16,10 @@ import org.junit.Test
 class ArrowTest {
 
     @Test
-    fun `monoid definition`() {
-        String.monoid().empty() + "aaa" shouldBe "aaa"
-        String.monoid().run { listOf("a", "b", "c").combineAll() } shouldBe "abc"
-        String.monoid().run { listOf("a", "b").combineAll() } + "c" shouldBe
-                String.monoid().run { "a" } + String.monoid().run { listOf("b", "c").combineAll() }
+    fun `identity and constant functions`() {
+
+        listOf(1, 2, 3).map(::identity) shouldBe listOf(1, 2, 3)
+        listOf("a", "b", "c").map(constant(1)) shouldBe listOf(1, 1, 1)
     }
 
     @Test
