@@ -5,6 +5,7 @@ import arrow.core.constant
 import arrow.core.fix
 import arrow.core.identity
 import arrow.core.monad
+import arrow.syntax.function.pipe
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
@@ -23,24 +24,22 @@ class ArrowTest {
     }
 
     @Test
-    fun `composition of pure and inpure functions`() {
+    fun `monads comprehension - composition of pure and inpure functions`() {
 
         fun pure1(i: Int) = i + 1
 
-        fun inpure2(i: Int): Try<Int> {
-            return Try.Success(i + 1)
-        }
+        fun inpure2(i: Int): Try<Int> = Try.Success(i + 1)
 
         val pure3 = ::pure1
 
-        fun pure4(i: Int) = i + 1
+        fun inpure4(i: Int): Try<String> = Try.Success((i + 1).toString())
 
         Try.monad().binding {
             val v1 = pure1(1)
             val v2 = inpure2(v1).bind()
             val v3 = pure3(v2)
-            val result = pure4(v3)
+            val result = inpure4(v3).bind()
             result
-        }.fix().fold({ -1 }, { it }) shouldBe 5
+        }.fix().fold({ "no value" }, { it }) pipe ::println
     }
 }
