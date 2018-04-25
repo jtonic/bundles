@@ -3,7 +3,7 @@ dependencies {
     compile "no.tornado:tornadofx:$tornadoFxVersion"
     compile "org.apache.httpcomponents:httpclient:$httpClient"
     compile "de.jensd:fontawesomefx-materialdesignfont:$materialDesignFontVersion"
-    compile 'org.controlsfx:controlsfx:8.40.14'
+    compile "org.controlsfx:controlsfx:$controlsfxVersion"
     compile "org.koin:koin-core:$koinVersion"
 
     testCompile "com.nhaarman:mockito-kotlin:$mockitoVersion"

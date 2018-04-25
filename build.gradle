@@ -62,6 +62,7 @@ allprojects {
         compile "io.arrow-kt:arrow-free:$arrowVersion"
         compile "io.arrow-kt:arrow-core:$arrowVersion"
         compile "io.arrow-kt:arrow-data:$arrowVersion"
+        compile "io.arrow-kt:arrow-instances-data:$arrowVersion"
         compile "io.arrow-kt:arrow-syntax:$arrowVersion"
     }
 

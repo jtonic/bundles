@@ -2,7 +2,11 @@ package ro.jtonic.tutorials.kt.tutorials.funktionale
 
 import arrow.core.Try
 import arrow.legacy.disjunctionTry
-import io.kotlintest.matchers.*
+import io.kotlintest.matchers.beOfType
+import io.kotlintest.matchers.fail
+import io.kotlintest.matchers.should
+import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldThrow
 import org.junit.Test
 
 /**
