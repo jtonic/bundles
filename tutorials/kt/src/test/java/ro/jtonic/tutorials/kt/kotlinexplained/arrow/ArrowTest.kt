@@ -9,6 +9,7 @@ import arrow.core.monad
 import arrow.data.OptionT
 import arrow.data.monad
 import arrow.data.value
+import arrow.syntax.function.pipe
 import arrow.typeclasses.binding
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
@@ -41,10 +42,15 @@ class ArrowTest {
         val bradPittMovies: Either<String, Option<List<String>>> = getMovies("Brad Pitt")
         val angelinaJolieMovies: Either<String, Option<List<String>>> = getMovies("Angelina Jolie")
 
-        OptionT.monad(Either.monad<List<String>>()).binding {
+        val moviesM: Either<String, Option<List<String>>> = OptionT.monad(Either.monad<String>()).binding {
             val bradPittMovies: List<String> = OptionT(bradPittMovies).bind()
             val angelinaJolieMovies: List<String> = OptionT(angelinaJolieMovies).bind()
+            val familyMovies: List<String> = bradPittMovies + angelinaJolieMovies
+            familyMovies
         }.value().fix()
+
+        val movies: String = moviesM.fold(::identity, { op -> op.fold({ "not found" }, { it.joinToString() }) })
+        movies pipe ::println
     }
 }
 
