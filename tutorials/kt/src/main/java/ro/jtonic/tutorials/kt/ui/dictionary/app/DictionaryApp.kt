@@ -43,7 +43,7 @@ class DictionaryApp : App(MainWorkspace::class, Style::class) {
 
 internal val App.configModel: ConfigurationModel 
     get() {
-        return ConfigurationModel(Configuration(config.string(Configuration.CORPORATE_KEY, "ws31wx")))
+        return ConfigurationModel(Configuration(config.string(Configuration.C_KEY, "ws31wx")))
     }
 
 fun main(args: Array<String>) {

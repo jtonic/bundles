@@ -15,17 +15,17 @@ class ConfigurationView : Fragment("Configuration") {
 
     private val configModel = app.configModel
 
-    private var corporateKeyTxtFld: TextField by singleAssign()
+    private var cKeyTxtFld: TextField by singleAssign()
 
     override val root = borderpane {
         center {
             form {
                 fieldset {
-                    field(text = "Corporate Key", orientation = Orientation.HORIZONTAL) {
-                        textfield(property = configModel.corporateKey) {
-                            corporateKeyTxtFld = this
+                    field(text = "C Key", orientation = Orientation.HORIZONTAL) {
+                        textfield(property = configModel.cKey) {
+                            cKeyTxtFld = this
                             validator(trigger = ValidationTrigger.OnChange(delay = 700)) {
-                                if (it.isNullOrBlank()) error("A non-empty corporateKey is required") else null
+                                if (it.isNullOrBlank()) error("A non-empty cKey is required") else null
                             }
                         }
                     }
@@ -37,7 +37,7 @@ class ConfigurationView : Fragment("Configuration") {
                         action {
                             if (configModel.isDirty) {
                                 configModel.commit()
-                                app.config.set(Configuration.CONFIG.CORPORATE_KEY to configModel.configuration.corporateKey)
+                                app.config.set(Configuration.CONFIG.C_KEY to configModel.configuration.cKey)
                                 app.config.save()
                                 close()
                             }

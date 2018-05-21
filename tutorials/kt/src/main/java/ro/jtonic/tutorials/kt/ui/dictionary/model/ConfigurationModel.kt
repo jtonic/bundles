@@ -8,5 +8,5 @@ import tornadofx.*
  */
 class ConfigurationModel(var configuration: Configuration) : ViewModel() {
 
-    val corporateKey = bind { configuration.corporateKeyProp }
+    val cKey = bind { configuration.cKeyProp }
 }

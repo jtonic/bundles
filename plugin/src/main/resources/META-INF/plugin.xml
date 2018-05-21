@@ -1,10 +1,11 @@
 <idea-plugin>
     <id>ro.jtonic.bundles.plugin</id>
-    <name>Penetration Testing Support Tool</name>
+    <name>M support</name>
     <vendor email="antonel.pazargic@gmail.com" url="http://www.example.com">Jtonic ITech</vendor>
+    <idea-version since-build="173.4301.14" until-build="IC-181.4668.68"/>
 
     <description><![CDATA[
-    Plugin example for getting up to speed with Idea Plugin Development
+    Simple M idea plugin
     ]]></description>
     <change-notes/>
 
@@ -12,7 +13,7 @@
         <action class="ro.jtonic.handson.plugin.MyAction" id="GenerationTool"
                 text="Generate">
             <add-to-group group-id="ToolsMenu"/>
-            <add-to-group group-id="WelcomeScreen.QuickStart"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart"/> <!-- when I add this gradle runIde freeze in splash screen -->
         </action>
     </actions>
 </idea-plugin>
