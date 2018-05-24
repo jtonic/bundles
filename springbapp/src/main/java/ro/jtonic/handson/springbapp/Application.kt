@@ -2,11 +2,14 @@ package ro.jtonic.handson.springbapp
 
 import io.kotlintest.matchers.shouldThrow
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.config.YamlPropertiesFactoryBean
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
+import org.springframework.core.io.ClassPathResource
 import ro.jtonic.handson.springbapp.client.FeignConfiguration
 import ro.jtonic.handson.springbapp.client.dictionary.DictionaryFeignClient
 import ro.jtonic.handson.springbapp.client.hr.BusinessFeignException
@@ -72,6 +75,17 @@ class Application {
 
                     val characters = marvelFeignClient.findCharacters(limit = 2)
                     println(characters)
+                }
+            }
+
+    @Bean
+    fun propertySourcePlaceholderConfigurer(): PropertySourcesPlaceholderConfigurer =
+            YamlPropertiesFactoryBean().let {
+                it.setResources(ClassPathResource("application.yaml"))
+                PropertySourcesPlaceholderConfigurer().apply {
+                    setProperties(it.`object`)
+                    setLocation(ClassPathResource("additional.properties"))
+                    setIgnoreUnresolvablePlaceholders(true)
                 }
             }
 }
