@@ -32,7 +32,8 @@
 
 
 #### Fix the following
-1. Spring boot test application cannot autowire Feign Clients
+1. ClientApp cannot autowire Feign Clients
+
      
 
 
