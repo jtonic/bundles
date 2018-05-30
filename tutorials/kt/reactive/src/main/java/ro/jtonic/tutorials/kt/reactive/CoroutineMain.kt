@@ -1,5 +1,8 @@
 package ro.jtonic.tutorials.kt.reactive
 
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.runBlocking
 import java.util.concurrent.TimeUnit
@@ -13,9 +16,13 @@ object CoroutineMain {
 
     @JvmStatic
     fun main(args: Array<String>) {
+
+        val defElapsedTime: Deferred<Long> = async(context = CommonPool) {
+            runDelayed()
+        }
+
         runBlocking {
-            val elapsedTime = runDelayed()
-            elapsedTime
+            val elapsedTime = defElapsedTime.await()
             println("elapsedTime = $elapsedTime")
         }
     }
