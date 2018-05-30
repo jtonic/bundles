@@ -1,5 +1,6 @@
 package ro.jtonic.tutorials.kt.reactive
 
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
@@ -28,5 +29,21 @@ class RxKotlinTest {
         subject.onNext("One")
         subject.onNext("Two")
         subject.onNext("Three")
+    }
+
+    @Test
+    fun `maybe example`() {
+        val m1: Maybe<Int> = Maybe.just(4)
+        m1.subscribeBy(
+                onSuccess = { println("on success. value = $it") },
+                onError = { println("error. error = ${it.message}") },
+                onComplete = { println("on complete") }
+        )
+        val m2: Maybe<Int> = Maybe.empty()
+        m2.subscribeBy(
+                onSuccess = { println("on success. value = $it") },
+                onError = { println("error. error = ${it.message}") },
+                onComplete = { println("on complete") }
+        )
     }
 }
