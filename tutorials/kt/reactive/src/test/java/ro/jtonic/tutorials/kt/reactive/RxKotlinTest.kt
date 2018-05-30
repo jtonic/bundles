@@ -1,11 +1,13 @@
 package ro.jtonic.tutorials.kt.reactive
 
+import io.kotlintest.matchers.shouldBe
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
+import kotlin.coroutines.experimental.buildSequence
 
 /**
  * Created by Antonel Ernest Pazargic on 21/05/2018.
@@ -45,5 +47,28 @@ class RxKotlinTest {
                 onError = { println("error. error = ${it.message}") },
                 onComplete = { println("on complete") }
         )
+    }
+
+    @Test
+    fun `fibonacci series`() {
+
+        val fibonacciSeq: Sequence<Int> = buildSequence {
+            var a = 0
+            var b = 1
+            yield(a)
+            yield(b)
+            while (true) {
+                val c = a + b
+                yield(c)
+                a = b
+                b = c
+            }
+        }
+
+        val fib1 = fibonacciSeq.take(3).toList()
+        fib1 shouldBe listOf(0, 1, 1)
+
+        val fib2 = fibonacciSeq.take(10).toList().joinToString()
+        println("fib2 = $fib2")
     }
 }
