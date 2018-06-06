@@ -1,8 +1,9 @@
 package ro.jtonic.handson.java;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 import java.util.function.BinaryOperator;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -29,7 +30,13 @@ public class LambdaExpressionTest {
   @Test
   public void testBinaryOperator() {
     BinaryOperator<Long> sum = (a, b) -> a + b;
-    Assert.assertThat(sum.apply(1L, 3L), CoreMatchers.equalTo(4L));
+    assertThat(sum.apply(1L, 3L), equalTo(4L));
+  }
+
+  @Test
+  public void testBinaryOperator2() {
+    BinaryOperator<Long> incLeft = (a, b) -> ++a;
+    assertThat(incLeft.apply(1L, 3L), equalTo(2L));
   }
 
   private void doWithMsg(Runnable block) {
