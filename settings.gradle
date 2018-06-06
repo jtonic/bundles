@@ -7,4 +7,5 @@ include 'tutorials:kt:reactive'
 include 'springbapp'
 include 'springboot2'
 include 'plugin'
+include 'java'
 

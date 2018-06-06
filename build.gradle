@@ -34,6 +34,12 @@ allprojects {
     apply plugin: 'kotlin-noarg'
     apply plugin: "io.gitlab.arturbosch.detekt"
 
+    [compileJava, compileTestJava]*.configure {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+        options.encoding = 'UTF-8'
+    }
+
     [compileKotlin, compileTestKotlin]*.configure {
         kotlinOptions {
             suppressWarnings = true
