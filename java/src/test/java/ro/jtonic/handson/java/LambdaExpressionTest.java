@@ -23,12 +23,27 @@ public class LambdaExpressionTest {
     consume("Tony", msg -> System.out.println("msg = " + msg));
   }
 
+  @Test
+  public void testAbstractFunctionalInterface() {
+    consume2("Tony", msg -> System.out.println("msg = " + msg));
+  }
+
   private void doWithMsg(Runnable block) {
     block.run();
   }
 
   private void consume(String target, MyConsumer consumer) {
     consumer.consume(target);
+  }
+
+  private void consume2(String target, MySecondConsumer consumer) {
+    consumer.consume(target);
+  }
+
+  @FunctionalInterface
+  abstract class MySecondConsumer {
+
+    public abstract void consume(String msg);
   }
 
   @FunctionalInterface
