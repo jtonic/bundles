@@ -1,5 +1,8 @@
 package ro.jtonic.handson.java;
 
+import java.util.function.BinaryOperator;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -21,6 +24,12 @@ public class LambdaExpressionTest {
   @Test
   public void testFunctionalInterface() {
     consume("Tony", msg -> System.out.println("msg = " + msg));
+  }
+
+  @Test
+  public void testBinaryOperator() {
+    BinaryOperator<Long> sum = (a, b) -> a + b;
+    Assert.assertThat(sum.apply(1L, 3L), CoreMatchers.equalTo(4L));
   }
 
   private void doWithMsg(Runnable block) {
