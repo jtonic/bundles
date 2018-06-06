@@ -31,10 +31,11 @@ public class LambdaExpressionTest {
     consumer.consume(target);
   }
 
+  @FunctionalInterface
   public interface MyConsumer {
 
     void consume(String msg);
 
-    // void print(String msg); uncomment this and get an compilation error at the lambda expression call site.
+    // void print(String msg); //uncomment this and get an compilation error stating that MyConsumer is not a functional interface.
   }
 }
