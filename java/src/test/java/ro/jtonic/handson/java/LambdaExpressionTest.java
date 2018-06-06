@@ -12,9 +12,9 @@ public class LambdaExpressionTest {
   @Test
   public void simpleEffectiveFinal() {
 
-    final String msg;
+    String msg;
     msg = "Tony";
-    // msg = "Irina"; // uncomment and an compilation error will occur here
+    // msg = "Irina"; // uncomment and an compilation error will occur in the next line
     doWithMsg(() -> System.out.println("msg = " + msg));
   }
 
