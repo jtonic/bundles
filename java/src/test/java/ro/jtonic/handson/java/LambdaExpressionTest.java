@@ -41,10 +41,7 @@ public class LambdaExpressionTest {
   }
 
   @FunctionalInterface
-  abstract class MySecondConsumer {
-
-    public abstract void consume(String msg);
-  }
+  abstract class MySecondConsumer implements MyConsumer {}
 
   @FunctionalInterface
   public interface MyConsumer {
