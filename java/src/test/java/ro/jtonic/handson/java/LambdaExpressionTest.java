@@ -31,9 +31,10 @@ public class LambdaExpressionTest {
     consumer.consume(target);
   }
 
-  @FunctionalInterface
   public interface MyConsumer {
 
     void consume(String msg);
+
+    // void print(String msg); uncomment this and get an compilation error at the lambda expression call site.
   }
 }
