@@ -18,7 +18,22 @@ public class LambdaExpressionTest {
     doWithMsg(() -> System.out.println("msg = " + msg));
   }
 
+  @Test
+  public void testFunctionalInterface() {
+    consume("Tony", msg -> System.out.println("msg = " + msg));
+  }
+
   private void doWithMsg(Runnable block) {
     block.run();
+  }
+
+  private void consume(String target, MyConsumer consumer) {
+    consumer.consume(target);
+  }
+
+  @FunctionalInterface
+  public interface MyConsumer {
+
+    void consume(String msg);
   }
 }
