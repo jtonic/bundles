@@ -30,7 +30,8 @@ public class StreamsTest {
 
   @Test
   public void testSimpleMaxFinalOperator() {
-    final Optional<String> max = Stream.of("Antonel", "Irina", "Oana", "Ion", "Liviu").max(Comparator.comparing(name -> name.length()));
+    final Optional<String> max = Stream.of("Antonel", "Irina", "Oana", "Ion", "Liviu").max(Comparator.comparing(String::length));
+    //noinspection ConstantConditions
     assertTrue(max.isPresent());
     assertEquals("Antonel", max.get());
   }
