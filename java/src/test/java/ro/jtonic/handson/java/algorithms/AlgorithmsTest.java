@@ -33,6 +33,20 @@ public class AlgorithmsTest {
     System.out.println();
   }
 
+  @Test
+  public void testFactorial() {
+    for (int i = 0; i < 6; i++) {
+      System.out.printf("factorial of %d is %d%n", i, factorial(i));
+    }
+  }
+
+  private int factorial(int i) {
+    if (i == 0) {
+      return 1;
+    }
+    return i * factorial(i - 1);
+  }
+
   private int fibRecursion(int n) {
     if (n <= 1) {
       return n;
