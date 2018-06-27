@@ -48,7 +48,7 @@ allprojects {
             jvmTarget = kotlinJvmTarget
             javaParameters = true
             incremental = true
-            freeCompilerArgs = ["-Xjsr305=strict", "-Xenable-jvm-default"]
+            freeCompilerArgs = ["-Xjsr305=strict", "-Xjvm-default=enable"]
         }
     }
     dependencies {
