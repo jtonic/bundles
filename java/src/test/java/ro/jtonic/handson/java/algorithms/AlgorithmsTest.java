@@ -14,13 +14,6 @@ public class AlgorithmsTest {
     fibNoRecursion(10);
   }
 
-  @Test
-  public void testFibonacci_Recursion() {
-    for (int i = 0; i <= 10; i++) {
-      System.out.printf("i = %d, fib = %d%n", i, fibRecursion(i));
-    }
-  }
-
   private void fibNoRecursion(int n) {
     int f = 0;
     int g = 1;
@@ -31,6 +24,20 @@ public class AlgorithmsTest {
       g = f - g;
     }
     System.out.println();
+  }
+
+  @Test
+  public void testFibonacci_Recursion() {
+    for (int i = 0; i <= 10; i++) {
+      System.out.printf("i = %d, fib = %d%n", i, fibRecursion(i));
+    }
+  }
+
+  private int fibRecursion(int n) {
+    if (n <= 1) {
+      return n;
+    }
+    return fibRecursion(n - 2) + fibRecursion(n - 1);
   }
 
   @Test
@@ -45,12 +52,5 @@ public class AlgorithmsTest {
       return 1;
     }
     return i * factorial(i - 1);
-  }
-
-  private int fibRecursion(int n) {
-    if (n <= 1) {
-      return n;
-    }
-    return fibRecursion(n - 2) + fibRecursion(n - 1);
   }
 }
