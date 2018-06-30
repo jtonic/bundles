@@ -20,4 +20,10 @@ public class MySingletonTest {
     assertThat(config.size(), is(2));
     assertThat(singleton.getValue("1"), is("one"));
   }
+
+  @Test
+  public void testInnerStaticClassBaseSingleton() {
+    final int poolSize = MySingleton2.getInstance().getPoolSize();
+    assertThat(poolSize, is(10));
+  }
 }
