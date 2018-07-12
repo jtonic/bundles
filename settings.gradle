@@ -6,6 +6,6 @@ include 'tutorials:kt:model'
 include 'tutorials:kt:reactive'
 include 'springbapp'
 include 'springboot2'
-include 'plugin'
+//include 'plugin'
 include 'java'
 
