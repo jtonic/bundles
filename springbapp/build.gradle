@@ -34,7 +34,7 @@ dependencyManagement {
     }
 }
 
-mainClassName = "ro.jtonic.handson.springbapp.Application"
+mainClassName = "ro.jtonic.handson.springbapp.clientserver.ServerApp"
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter"
@@ -54,9 +54,9 @@ dependencies {
 }
 
 allOpen {
-    annotation("ro.jtonic.handson.springbapp.annotation.Open")
+    annotation("ro.jtonic.handson.springbapp.clientserver.annotation.Open")
 }
 
 noArg {
-    annotation("ro.jtonic.handson.springbapp.annotation.NoArgs")
+    annotation("ro.jtonic.handson.springbapp.clientserver.annotation.NoArgs")
 }
