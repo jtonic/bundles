@@ -21,7 +21,7 @@ dependencyManagement {
 
 apply plugin: 'application'
 
-mainClassName = "ro.jtonic.handson.springbapp.Application"
+mainClassName = "ro.jtonic.handson.springboot2.SpringBoot2App"
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter'

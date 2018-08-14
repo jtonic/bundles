@@ -23,14 +23,4 @@ class SpringBoot2App {
                     }
         }
     }
-/*
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            SpringApplicationBuilder()
-                    .sources(SpringBoot2App::class.java)
-                    .run(*args)
-        }
-    }
-*/
 }
