@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.oop.dataclass
 
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
 import org.junit.Test
 import ro.jtonic.tutorials.kt.model.Person
 

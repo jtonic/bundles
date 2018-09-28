@@ -1,18 +1,19 @@
+/*
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
 import arrow.core.Try
-import arrow.legacy.disjunctionTry
-import io.kotlintest.matchers.beOfType
-import io.kotlintest.matchers.fail
-import io.kotlintest.matchers.should
-import io.kotlintest.matchers.shouldBe
-import io.kotlintest.matchers.shouldThrow
+import io.kotlintest.beOfType
+import io.kotlintest.fail
+import io.kotlintest.should
+import io.kotlintest.shouldThrow
 import org.junit.Test
 
+*/
 /**
  * Created by Antonel Ernest Pazargic on 17/12/2017.
  * @author Antonel Ernest Pazargic
- */
+ *//*
+
 class EitherTest {
 
     @Test
@@ -42,7 +43,7 @@ class EitherTest {
         val lst = listOf(1, 2)
 
         disjunctionTry {
-           getFirst2Values(lst)
+            getFirst2Values(lst)
         }.fold({}) {
             it.first shouldBe 1
             it.second shouldBe 2
@@ -60,6 +61,7 @@ class EitherTest {
         pair shouldBe null
     }
 
-    private fun<T> getFirst2Values(lst: List<T>): Pair<T, T> =
-         lst.component1() to lst.component2()
+    private fun <T> getFirst2Values(lst: List<T>): Pair<T, T> =
+            lst.component1() to lst.component2()
 }
+*/

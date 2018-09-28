@@ -1,7 +1,7 @@
 package ro.jtonic.tutorials.kt.tutorials.funktionale
 
 import arrow.core.andThen
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
 import org.junit.Test
 
 /**

@@ -4,7 +4,7 @@ import arrow.syntax.function.andThen
 import arrow.syntax.function.curried
 import arrow.syntax.function.paired
 import arrow.syntax.function.unpaired
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
 import org.junit.Test
 
 /**

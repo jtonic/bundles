@@ -1,8 +1,8 @@
 package ro.jtonic.tutorials.kt.tutorials.fp
 
 import io.kotlintest.matchers.haveSize
-import io.kotlintest.matchers.should
-import io.kotlintest.matchers.shouldNotBe
+import io.kotlintest.should
+import io.kotlintest.shouldNotBe
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.delay

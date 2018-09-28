@@ -1,7 +1,7 @@
 package ro.jtonic.handson.springbapp.miscs
 
-import io.kotlintest.matchers.shouldBe
-import io.kotlintest.matchers.shouldNotBe
+import io.kotlintest.shouldBe
+import io.kotlintest.shouldNotBe
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

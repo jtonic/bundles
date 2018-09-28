@@ -1,6 +1,6 @@
 package ro.jtonic.handson.springbapp.resource
 
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
 import io.restassured.RestAssured
 import org.junit.Test
 import org.junit.runner.RunWith

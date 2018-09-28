@@ -1,7 +1,7 @@
 package ro.jtonic.tutorials.kt
 
 import io.kotlintest.matchers.haveSize
-import io.kotlintest.matchers.should
+import io.kotlintest.should
 import org.junit.Test
 
 /**

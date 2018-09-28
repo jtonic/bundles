@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.issues
 
-import io.kotlintest.matchers.shouldThrow
+import io.kotlintest.shouldThrow
 import org.junit.Test
 
 /**

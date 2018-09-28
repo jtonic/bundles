@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.reactive
 
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy

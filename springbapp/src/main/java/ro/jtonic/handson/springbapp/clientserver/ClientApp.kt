@@ -1,6 +1,6 @@
 package ro.jtonic.handson.springbapp.clientserver
 
-import io.kotlintest.matchers.shouldThrow
+import io.kotlintest.shouldThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean
 import org.springframework.boot.ApplicationRunner

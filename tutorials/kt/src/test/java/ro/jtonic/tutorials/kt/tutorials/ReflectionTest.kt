@@ -1,6 +1,6 @@
 package ro.jtonic.tutorials.kt.tutorials
 
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
 import org.junit.Test
 import kotlin.reflect.KCallable
 import kotlin.reflect.KMutableProperty1

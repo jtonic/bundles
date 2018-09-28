@@ -1,10 +1,10 @@
 package ro.jtonic.tutorials.kt.tutorials
 
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.whenever
-import io.kotlintest.matchers.shouldBe
-import io.kotlintest.matchers.shouldNotBe
-import io.kotlintest.mock.mock
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import io.kotlintest.shouldBe
+import io.kotlintest.shouldNotBe
 import org.junit.Test
 import kotlin.properties.Delegates
 import kotlin.properties.ReadOnlyProperty

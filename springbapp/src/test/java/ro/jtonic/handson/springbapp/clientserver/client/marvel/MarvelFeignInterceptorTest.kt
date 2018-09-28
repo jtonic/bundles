@@ -1,8 +1,8 @@
 package ro.jtonic.handson.springbapp.clientserver.client.marvel
 
 import io.kotlintest.matchers.beInstanceOf
-import io.kotlintest.matchers.should
-import io.kotlintest.matchers.shouldNotBe
+import io.kotlintest.should
+import io.kotlintest.shouldNotBe
 import org.junit.Test
 
 /**

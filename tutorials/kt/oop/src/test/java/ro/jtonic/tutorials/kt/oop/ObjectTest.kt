@@ -1,6 +1,11 @@
 package ro.jtonic.tutorials.kt.oop
 
-import io.kotlintest.matchers.*
+import io.kotlintest.matchers.beInstanceOf
+import io.kotlintest.matchers.beTheSameInstanceAs
+import io.kotlintest.matchers.instanceOf
+import io.kotlintest.should
+import io.kotlintest.shouldBe
+import io.kotlintest.shouldThrow
 import org.junit.Test
 
 /**
