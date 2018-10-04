@@ -15,4 +15,11 @@ object Versions {
     val junitVersion = "4.12"
     val detektVersion = "1.0.0.RC6-1"
     val materialDesignFontVersion = "1.7.22-4"
+    val poiVersion = "3.17"
+    val fuelVersion = "1.15.0"
+    val rxKotlinVersion = "2.2.0"
+    val tornadoFxVersion = "1.7.15"
+    val httpClient = "4.5.3"
+    val controlsfxVersion = "8.40.14"
+    val koinVersion = "0.9.1"
 }

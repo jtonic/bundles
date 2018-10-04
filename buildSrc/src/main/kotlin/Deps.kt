@@ -1,5 +1,4 @@
-
-object Dependencies {
+object Deps {
 
     val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlinVersion}"
     val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
@@ -13,4 +12,17 @@ object Dependencies {
     val kotlinTestAssertions = "io.kotlintest:kotlintest-assertions:${Versions.kotlinTestVersion}"
     val junit = "junit:junit:${Versions.junitVersion}"
     val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
+    val poiDependency = "org.apache.poi:poi:${Versions.poiVersion}"
+    val poiOoxmlDependency = "org.apache.poi:poi-ooxml:${Versions.poiVersion}"
+
+    val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlinVersion}"
+    val tornadoFx = "no.tornado:tornadofx:${Versions.tornadoFxVersion}"
+    val httpClient = "org.apache.httpcomponents:httpclient:${Versions.httpClient}"
+    val materialDesign = "de.jensd:fontawesomefx-materialdesignfont:${Versions.materialDesignFontVersion}"
+    val controlFx = "org.controlsfx:controlsfx:${Versions.controlsfxVersion}"
+    val koin = "org.koin:koin-core:${Versions.koinVersion}"
+
+    val fuel = "com.github.kittinunf.fuel:fuel:${Versions.fuelVersion}"
+    val fuelCoroutines = "com.github.kittinunf.fuel:fuel-coroutines:${Versions.fuelVersion}"
+    val fuelJackson = "com.github.kittinunf.fuel:fuel-jackson:${Versions.fuelVersion}"
 }

@@ -12,7 +12,9 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        maven(url = "https://plugins.gradle.org/m2/")
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
     }
 
     dependencies {
@@ -33,7 +35,9 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
-        maven("http://dl.bintray.com/kategory/maven")
+        maven{
+            url = uri("http://dl.bintray.com/kategory/maven")
+        }
     }
 
     apply {
@@ -44,24 +48,24 @@ allprojects {
     }
 
     dependencies {
-        compile(Dependencies.kotlinStdLib) {
+        compile(Deps.kotlinStdLib) {
             isForce = true
         }
-        compile(Dependencies.kotlinReflect) {
+        compile(Deps.kotlinReflect) {
             isForce = true
         }
-        compile (Dependencies.jsr305)
-        compile (Dependencies.kotlinCoroutines)
+        compile (Deps.jsr305)
+        compile (Deps.kotlinCoroutines)
 
-        compile (Dependencies.arrowFree)
-        compile (Dependencies.arrowCore)
-        compile (Dependencies.arrowData)
-        compile (Dependencies.arrowInstancesData)
-        compile (Dependencies.arrowSyntax)
+        compile (Deps.arrowFree)
+        compile (Deps.arrowCore)
+        compile (Deps.arrowData)
+        compile (Deps.arrowInstancesData)
+        compile (Deps.arrowSyntax)
 
-        compile (Dependencies.kotlinTestAssertions)
-        testCompile (Dependencies.junit)
-        testCompile (Dependencies.mockitoKotlin)
+        compile (Deps.kotlinTestAssertions)
+        testCompile (Deps.junit)
+        testCompile (Deps.mockitoKotlin)
     }
 
     configure<JavaPluginConvention> {
