@@ -82,7 +82,7 @@ class ClientApp {
             YamlPropertiesFactoryBean().let {
                 it.setResources(ClassPathResource("application.yaml"))
                 PropertySourcesPlaceholderConfigurer().apply {
-                    setProperties(it.`object`)
+                    setProperties(it.`object`!!)
                     setLocation(ClassPathResource("additional.properties"))
                     setIgnoreUnresolvablePlaceholders(true)
                 }

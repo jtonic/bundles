@@ -1,4 +1,5 @@
+
 dependencies {
-    compile "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    compile(Deps.rxKotlin)
     testCompile(project(":tutorials:kt:model"))
 }

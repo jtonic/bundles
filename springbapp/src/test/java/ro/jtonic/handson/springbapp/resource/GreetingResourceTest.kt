@@ -4,9 +4,9 @@ import io.kotlintest.shouldBe
 import io.restassured.RestAssured
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.boot.context.embedded.LocalServerPort
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
+import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.junit4.SpringRunner

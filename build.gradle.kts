@@ -27,7 +27,7 @@ buildscript {
 plugins {
     maven
     java
-    id("io.gitlab.arturbosch.detekt").version(Versions.detektVersion)
+    id("io.gitlab.arturbosch.detekt") version(Versions.detektVersion)
 }
 
 allprojects {
