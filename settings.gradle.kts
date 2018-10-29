@@ -7,5 +7,6 @@ include(
         "tutorials:kt:reactive",
         "springbapp",
         "springboot2",
-        "java"
+        "java",
+        "tutorials:kt:coursera"
 )
