@@ -4,8 +4,9 @@ include(
         "dsls:kpoi:client",
         "tutorials:kt:oop",
         "tutorials:kt:model",
-        "tutorials:kt:reactive",
-        "springbapp",
+        //removed reactive until the dependencies are fixed
+        // "tutorials:kt:reactive",
+        // "springbapp",
         "springboot2",
         "java",
         "tutorials:kt:coursera"

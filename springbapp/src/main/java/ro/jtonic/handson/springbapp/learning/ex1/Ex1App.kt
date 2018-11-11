@@ -1,6 +1,7 @@
 package ro.jtonic.handson.springbapp.learning.ex1
 
 import org.springframework.boot.ApplicationRunner
+import org.springframework.boot.WebApplicationType
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
@@ -17,7 +18,7 @@ class Ex1App(val printingService: PrintingService) {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            SpringApplicationBuilder().web(false).sources(Ex1App::class.java).build().run(*args)
+            SpringApplicationBuilder().web(WebApplicationType.SERVLET).sources(Ex1App::class.java).build().run(*args)
         }
     }
 

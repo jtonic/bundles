@@ -1,7 +1,7 @@
 package ro.jtonic.tutorials.kt.ui.dictionary.di
 
-import org.koin.KoinContext
-import org.koin.core.parameter.Parameters
+import org.koin.core.parameter.ParameterDefinition
+import org.koin.core.parameter.emptyParameterDefinition
 import org.koin.standalone.StandAloneContext
 
 /**
@@ -13,8 +13,8 @@ interface Injectable
  * inject lazily given dependency for KoinComponent
  * @param name - bean name / optional
  */
-inline fun <reified T> Injectable.autowire(name: String = "", noinline parameters: Parameters = { emptyMap() }) =
-    kotlin.lazy { (StandAloneContext.koinContext as KoinContext).get<T>(name, parameters) }
+inline fun <reified T: Any> Injectable.autowire(name: String = "", noinline parameters: ParameterDefinition = emptyParameterDefinition()) =
+    kotlin.lazy { StandAloneContext.getKoin().koinContext.get<T>(name = name, parameters = parameters) }
 
 /**
  * inject lazily given property for KoinComponent
@@ -22,7 +22,7 @@ inline fun <reified T> Injectable.autowire(name: String = "", noinline parameter
  * throw MissingPropertyException if property is not found
  */
 inline fun <reified T> Injectable.property(key: String) =
-    kotlin.lazy { (StandAloneContext.koinContext as KoinContext).getProperty<T>(key) }
+    kotlin.lazy { StandAloneContext.getKoin().koinContext.getProperty<T>(key) }
 
 /**
  * inject lazily given property for KoinComponent
@@ -33,20 +33,20 @@ inline fun <reified T> Injectable.property(key: String) =
  *
  */
 inline fun <reified T> Injectable.property(key: String, defaultValue: T) =
-    kotlin.lazy { (StandAloneContext.koinContext as KoinContext).getProperty(key, defaultValue) }
+    kotlin.lazy { StandAloneContext.getKoin().koinContext.getProperty(key, defaultValue) }
 
 
 /**
  * Help to Access context
  */
-private fun context() = (StandAloneContext.koinContext as KoinContext)
+private fun context() = StandAloneContext.getKoin().koinContext
 
 /**
  * Retrieve given dependency for KoinComponent
  * @param name - bean name / optional
  */
-inline fun <reified T> Injectable.get(name: String = "", noinline parameters: Parameters = { emptyMap() }) =
-    (StandAloneContext.koinContext as KoinContext).get<T>(name, parameters)
+inline fun <reified T: Any> Injectable.get(name: String = "", noinline parameters: ParameterDefinition = emptyParameterDefinition()) =
+    StandAloneContext.getKoin().koinContext.get<T>(name = name, parameters = parameters)
 
 /**
  * Retrieve given property for KoinComponent
@@ -54,7 +54,7 @@ inline fun <reified T> Injectable.get(name: String = "", noinline parameters: Pa
  * throw MissingPropertyException if property is not found
  */
 inline fun <reified T> Injectable.getProperty(key: String) =
-    (StandAloneContext.koinContext as KoinContext).getProperty<T>(key)
+    StandAloneContext.getKoin().koinContext.getProperty<T>(key)
 
 /**
  * Retrieve given property for KoinComponent
@@ -65,7 +65,7 @@ inline fun <reified T> Injectable.getProperty(key: String) =
  *
  */
 inline fun <reified T> Injectable.getProperty(key: String, defaultValue: T) =
-    (StandAloneContext.koinContext as KoinContext).getProperty(key, defaultValue)
+    StandAloneContext.getKoin().koinContext.getProperty(key, defaultValue)
 
 /**
  * set a property
@@ -78,10 +78,10 @@ fun Injectable.setProperty(key: String, value: Any) = context().setProperty(key,
  * Release a Koin context
  * @param name
  */
-fun Injectable.releaseContext(name: String) = context().releaseContext(name)
+fun Injectable.releaseContext(name: String) = context().release(name)
 
 /**
  * Release properties
  * @param keys - key properties
  */
-fun Injectable.releaseProperties(vararg keys: String) = context().releaseProperties(*keys)
+//fun Injectable.releaseProperties(vararg keys: String) = context().release(*keys)

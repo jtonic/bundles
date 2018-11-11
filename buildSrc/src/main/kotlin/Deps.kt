@@ -13,6 +13,7 @@ import Versions.materialDesignFontVersion
 import Versions.mockitoKotlinVersion
 import Versions.poiVersion
 import Versions.restAssuredVersion
+import Versions.rxJavaVersion
 import Versions.rxKotlinVersion
 import Versions.springBoot1Version
 import Versions.springBoot2Version
@@ -39,6 +40,7 @@ object Deps {
     val poiOoxmlDependency = "org.apache.poi:poi-ooxml:$poiVersion"
 
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    val rxJava = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     val tornadoFx = "no.tornado:tornadofx:$tornadoFxVersion"
     val httpClient = "org.apache.httpcomponents:httpclient:$httpClientVersion"
     val materialDesign = "de.jensd:fontawesomefx-materialdesignfont:$materialDesignFontVersion"

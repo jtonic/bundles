@@ -1,10 +1,6 @@
 package ro.jtonic.tutorials.kt.tutorials.coroutines
 
 import io.kotlintest.shouldBe
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Ignore
 import org.junit.Test
 import java.util.concurrent.TimeUnit
@@ -13,6 +9,7 @@ import kotlin.concurrent.thread
 
 class CoroutineTest {
 
+/*
     @Test
     fun `test coroutines`() {
         var count = AtomicLong(0)
@@ -23,7 +20,7 @@ class CoroutineTest {
         for (i in 1..1_000_000) {
             val job = launch {
                 count.incrementAndGet()
-                delay(1_000L)
+                delay(Duration.ofMillis(1_000L))
             }
             jobs += job
         }
@@ -35,6 +32,7 @@ class CoroutineTest {
         println("Executed in ${System.currentTimeMillis() - start} millis")
         result shouldBe 1_000_000L
     }
+*/
 
     @Test
     @Ignore("This fails with OOME")

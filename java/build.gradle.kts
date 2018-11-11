@@ -1,4 +1,8 @@
 
 plugins {
-    id("io.franzbecker.gradle-lombok") version(Versions.lombokVersion)
+    id("io.franzbecker.gradle-lombok") version(Versions.lombokPlugicVersion)
+}
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:${Versions.lombokVersion}")
 }

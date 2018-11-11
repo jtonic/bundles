@@ -1,8 +1,12 @@
+import groovyjarjarcommonscli.OptionBuilder.withType
+import org.jetbrains.kotlin.allopen.gradle.AllOpenExtension
+import org.jetbrains.kotlin.allopen.gradle.AllOpenKotlinGradleSubplugin
 import org.jetbrains.kotlin.config.AnalysisFlag.Flags.experimental
 import org.jetbrains.kotlin.contracts.model.structure.UNKNOWN_COMPUTATION.type
 import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.model.AllOpen
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "ro.jtonic.bundles"
@@ -77,10 +81,6 @@ allprojects {
         options.encoding = "UTF-8"
     }
 
-    configure<KotlinProjectExtension> {
-        experimental.coroutines = Coroutines.ENABLE
-    }
-
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             suppressWarnings = true
@@ -113,6 +113,7 @@ allprojects {
         testCompile ("junit:junit:${Versions.junitVersion}")
         testCompile ("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}")
     }
+
 }
 
 detekt {
@@ -133,6 +134,7 @@ configurations.all {
     resolutionStrategy {
         force("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}")
         force("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}")
+        force(Deps.rxJava)
     }
 }
 

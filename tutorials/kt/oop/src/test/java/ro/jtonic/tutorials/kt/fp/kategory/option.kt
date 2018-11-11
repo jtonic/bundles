@@ -1,9 +1,10 @@
 package ro.jtonic.tutorials.kt.fp.kategory
 
+import arrow.core.ForOption
 import arrow.core.Option
 import arrow.core.Some
 import arrow.core.fix
-import arrow.core.monad
+import arrow.instances.extensions
 import arrow.typeclasses.binding
 
 /**
@@ -21,12 +22,14 @@ fun aim(): Option<Target> = Some(Target)
 fun launch(nuke: Nuke, target: Target): Option<Impacted> = Some(Impacted)
 
 fun main(args: Array<String>) {
-    val eval = Option.monad().binding {
-        val nuke = arm().bind()
-        val target = aim().bind()
-        val impact = launch(nuke, target).bind()
-        impact
-    }.fix()
 
+    val eval = ForOption extensions {
+        binding {
+            val nuke = arm().bind()
+            val target = aim().bind()
+            val impact = launch(nuke, target).bind()
+            impact
+        }.fix()
+    }
     println("launch() = $eval")
 }

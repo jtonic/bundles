@@ -1,9 +1,10 @@
 package ro.jtonic.tutorials.kt.kotlinexplained
 
-import kotlinx.coroutines.experimental.channels.produce
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.time.delay
 import org.junit.Test
+import java.time.Duration
 import java.util.concurrent.TimeUnit
 
 /**
@@ -20,9 +21,9 @@ class ConcurrentTest {
 
             val channel = produce<Char> {
                 repeat(10_000) {
-                    delay(1, TimeUnit.MILLISECONDS)
+                    delay(Duration.ofMillis(1))
                     channel.send('.')
-                    delay(1, TimeUnit.MILLISECONDS)
+                    delay(Duration.ofMillis(1))
                     channel.send(',')
                 }
                 channel.close()

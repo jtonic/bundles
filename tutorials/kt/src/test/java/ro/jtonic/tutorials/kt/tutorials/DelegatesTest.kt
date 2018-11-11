@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldNotBe
 import org.junit.Test
+import ro.jtonic.tutorials.core.Open
 import kotlin.properties.Delegates
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
@@ -87,6 +88,7 @@ class DelegatesTest {
 
     }
 
+    @Open
     class TestAppCtx {
 
         fun foo(a: String): String {
@@ -94,17 +96,5 @@ class DelegatesTest {
         }
     }
 
-/*
-    object ApplicationContext {
-
-        fun <T> get(value: Klass<T>): T =
-                when (value) {
-                    is String -> value
-                    else -> throw IllegalArgumentException("Cannot be retrieved from application context")
-                }
-    }
-*/
-
     class Student(val name: String, val age: Int = 5)
 }
-

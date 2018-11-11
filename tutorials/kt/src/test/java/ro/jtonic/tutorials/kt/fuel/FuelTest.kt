@@ -5,7 +5,7 @@ import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.jackson.jacksonDeserializerOf
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 

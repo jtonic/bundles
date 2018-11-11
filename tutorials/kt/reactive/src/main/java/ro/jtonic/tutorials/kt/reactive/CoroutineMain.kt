@@ -1,11 +1,9 @@
 package ro.jtonic.tutorials.kt.reactive
 
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.runBlocking
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.time.delay
+import java.time.Duration
 import kotlin.system.measureTimeMillis
 
 /**
@@ -15,23 +13,19 @@ import kotlin.system.measureTimeMillis
 object CoroutineMain {
 
     @JvmStatic
-    fun main(args: Array<String>) {
+    fun main(args: Array<String>) = runBlocking {
 
-        val defElapsedTime: Deferred<Long> = async(context = CommonPool) {
+        val defElapsedTime: Deferred<Long> = async {
             runDelayed()
         }
-
-        runBlocking {
-            val elapsedTime = defElapsedTime.await()
-            println("elapsedTime = $elapsedTime")
-        }
+        val elapsedTime = defElapsedTime.await()
+        println("elapsedTime = $elapsedTime")
     }
 
-    suspend fun runDelayed() =
+    private suspend fun runDelayed() =
             measureTimeMillis {
                 println("before delay")
-                delay(2, TimeUnit.SECONDS)
+                delay(Duration.ofSeconds(2))
                 println("after delay")
             }
-
 }

@@ -7,9 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-import lombok.Getter;
 
-@Getter
 public final class Artist {
 
   private String name;
@@ -44,6 +42,10 @@ public final class Artist {
   @Override
   public String toString() {
     return getName();
+  }
+
+  private String getName() {
+    return name;
   }
 
   public Artist copy() {

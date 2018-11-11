@@ -4,6 +4,7 @@ import io.kotlintest.shouldThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean
 import org.springframework.boot.ApplicationRunner
+import org.springframework.boot.WebApplicationType
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
@@ -31,7 +32,7 @@ class ClientApp {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            SpringApplicationBuilder().web(false).sources(ClientApp::class.java).build(*args).run()
+            SpringApplicationBuilder().web(WebApplicationType.NONE).sources(ClientApp::class.java).build(*args).run()
         }
     }
 

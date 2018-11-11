@@ -1,16 +1,7 @@
 package ro.jtonic.tutorials.kt.kotlinexplained.arrow
 
-import arrow.core.Either
-import arrow.core.Option
 import arrow.core.constant
-import arrow.core.fix
 import arrow.core.identity
-import arrow.core.monad
-import arrow.data.OptionT
-import arrow.data.monad
-import arrow.data.value
-import arrow.syntax.function.pipe
-import arrow.typeclasses.binding
 import io.kotlintest.shouldBe
 import org.junit.Test
 
@@ -27,6 +18,7 @@ class ArrowTest {
         listOf("a", "b", "c").map(constant(1)) shouldBe listOf(1, 1, 1)
     }
 
+/*
     @Test
     fun `monads transformer - composition of pure and inpure functions`() {
 
@@ -52,6 +44,7 @@ class ArrowTest {
         val movies: String = moviesM.fold(::identity, { op -> op.fold({ "not found" }, { it.joinToString() }) })
         movies pipe ::println
     }
+*/
 }
 
 

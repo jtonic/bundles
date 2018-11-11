@@ -1,6 +1,7 @@
 package ro.jtonic.handson.springbapp.clientserver
 
 import org.springframework.boot.ApplicationRunner
+import org.springframework.boot.WebApplicationType
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
@@ -22,7 +23,7 @@ class ServerApp {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            SpringApplicationBuilder().web(true).sources(ServerApp::class.java).build(*args).run()
+            SpringApplicationBuilder().web(WebApplicationType.SERVLET).sources(ServerApp::class.java).build(*args).run()
         }
     }
 

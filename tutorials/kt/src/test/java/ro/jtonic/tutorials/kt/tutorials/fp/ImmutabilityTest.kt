@@ -3,11 +3,12 @@ package ro.jtonic.tutorials.kt.tutorials.fp
 import io.kotlintest.matchers.haveSize
 import io.kotlintest.should
 import io.kotlintest.shouldNotBe
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.time.delay
 import org.junit.Test
+import java.time.Duration
 
 /**
  * Created by Antonel Ernest Pazargic on 26/03/2018.
@@ -54,43 +55,45 @@ class ImmutabilityTest {
 
     @Test
     fun `thread unsafety`() {
-        async(CommonPool) {
-            for(i in 11..20) {
-                ImmutableObject.age += i
-                println("from async1: ${ImmutableObject.age}")
-                delay(300)
+        runBlocking {
+            async {
+                for(i in 11..20) {
+                    ImmutableObject.age += i
+                    println("from async1: ${ImmutableObject.age}")
+                    delay(300)
+                }
             }
-        }
-        async(CommonPool) {
-            for(i in 1..10) {
-                ImmutableObject.age++
-                println("from async2: ${ImmutableObject.age}")
-                delay(500)
+            async {
+                for(i in 1..10) {
+                    ImmutableObject.age++
+                    println("from async2: ${ImmutableObject.age}")
+                    delay(500)
+                }
             }
+            delay(5_000)
         }
-
-        runBlocking { delay(5_000) }
     }
 
     @Test
     fun `thread safety`() {
-        async(CommonPool) {
-            var age = ImmutableObject.age
-            for(i in 11..20) {
-                age += i
-                println("from async1: $age")
-                delay(300)
+        runBlocking {
+            async {
+                var age = ImmutableObject.age
+                for(i in 11..20) {
+                    age += i
+                    println("from async1: $age")
+                    delay(300)
+                }
             }
-        }
-        async(CommonPool) {
-            var age = ImmutableObject.age
-            for(i in 1..10) {
-                age++
-                println("from async2: $age")
-                delay(500)
+            async {
+                var age = ImmutableObject.age
+                for(i in 1..10) {
+                    age++
+                    println("from async2: $age")
+                    delay(500)
+                }
             }
+            delay(Duration.ofSeconds(5))
         }
-
-        runBlocking { delay(5_000) }
     }
 }

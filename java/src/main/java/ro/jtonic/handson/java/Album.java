@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-import lombok.Getter;
 
 public final class Album implements Performance {
 
-    @Getter
     private String name;
     private List<Track> tracks;
     private List<Artist> musicians;
@@ -34,7 +32,17 @@ public final class Album implements Performance {
         return unmodifiableList(tracks);
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
     public Stream<Artist> getMusicians() {
+        return musicians.stream();
+    }
+
+    @Override
+    public Stream<Artist> getAllMusicians() {
         return musicians.stream();
     }
 

@@ -4,6 +4,7 @@ package ro.jtonic.tutorials.kt.ui.dictionary.app
 
 import javafx.application.Application
 import javafx.stage.Stage
+import org.koin.core.KoinProperties
 import org.koin.standalone.StandAloneContext.closeKoin
 import org.koin.standalone.StandAloneContext.startKoin
 import ro.jtonic.tutorials.kt.ui.dictionary.css.Style
@@ -47,7 +48,7 @@ internal val App.configModel: ConfigurationModel
     }
 
 fun main(args: Array<String>) {
-    startKoin(listOf(HelloModule), properties = mapOf(WHO to "jtonic"))
+    startKoin(listOf(HelloModule), properties = KoinProperties(extraProperties = mapOf(WHO to "jtonic")))
     Application.launch(DictionaryApp::class.java, *args)
     closeKoin()
 }

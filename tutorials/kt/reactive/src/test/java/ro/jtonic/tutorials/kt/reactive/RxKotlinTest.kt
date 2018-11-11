@@ -7,7 +7,6 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
-import kotlin.coroutines.experimental.buildSequence
 
 /**
  * Created by Antonel Ernest Pazargic on 21/05/2018.
@@ -52,7 +51,7 @@ class RxKotlinTest {
     @Test
     fun `fibonacci series`() {
 
-        val fibonacciSeq: Sequence<Int> = buildSequence {
+        val fibonacciSeq: Sequence<Int> = sequence {
             var a = 0
             var b = 1
             yield(a)
