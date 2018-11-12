@@ -3,10 +3,7 @@ object Versions {
 
     val projectVersion = "0.0.1-SNAPSHOT"
 
-//    Report this error to jetbrains 2018.3.RC1 and gradle 5.0-rc1
-//    Project directory '/Users/antonelpazargic/jtonic/git/github/bundles/buildSrc' is not part of the build defined by settings file '/Users/antonelpazargic/jtonic/git/github/bundles/settings.gradle.kts'. If this is an unrelated build, it must have it's own settings file.
-//    val gradleVersion = "5.0-rc-1"
-    val gradleVersion = "5.0-rc-1"
+    val gradleVersion = "5.0-rc-2"
 
     val kotlinVersion = "1.3.0"
     val kotlinLanguageVersion = "1.3"
