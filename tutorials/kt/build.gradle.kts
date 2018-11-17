@@ -17,12 +17,6 @@ dependencies {
     testCompile(Deps.fuelJackson)
 }
 
-kotlin {
-    experimental {
-        coroutines = Coroutines.ENABLE
-    }
-}
-
 configure<AllOpenExtension> {
     annotations(listOf("ro.jtonic.tutorials.core.Open"))
 }

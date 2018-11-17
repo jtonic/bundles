@@ -3,9 +3,9 @@ object Versions {
 
     val projectVersion = "0.0.1-SNAPSHOT"
 
-    val gradleVersion = "5.0-rc-2"
+    val gradleVersion = "5.0-rc-3"
 
-    val kotlinVersion = "1.3.0"
+    val kotlinVersion = "1.3.10"
     val kotlinLanguageVersion = "1.3"
     val kotlinApiVersion = "1.3"
     val kotlinJvmTarget = "1.8"
