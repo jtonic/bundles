@@ -25,13 +25,10 @@ dependencyManagement {
 application { mainClassName = "ro.jtonic.handson.springboot2.SpringBoot2App" }
 
 dependencies {
-    compile(Deps.springBoot2Starter)
     compile(Deps.springBoot2WebStarter)
-    compile(Deps.springCloudFeignStarter)
-    compile(Deps.springCloudRibbonStarter)
+    compile(Deps.springBoot2WebFluxStarter)
 
     testCompile(Deps.springBoot2TestStarter)
+    testCompile(Deps.reactorTest)
     testCompile(Deps.junit)
-    testCompile(Deps.restAssured)
-    testCompile(Deps.restAssuredSchemaValidation)
 }

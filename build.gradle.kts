@@ -1,4 +1,4 @@
-import groovyjarjarcommonscli.OptionBuilder.withType
+import org.gradle.plugins.ide.idea.model.IdeaModel
 import org.jetbrains.kotlin.allopen.gradle.AllOpenExtension
 import org.jetbrains.kotlin.allopen.gradle.AllOpenKotlinGradleSubplugin
 import org.jetbrains.kotlin.config.AnalysisFlag.Flags.experimental
@@ -45,6 +45,7 @@ allprojects {
     }
 
     apply {
+        plugin("idea")
         plugin("java")
         plugin("kotlin")
         plugin("kotlin-allopen")
@@ -90,6 +91,16 @@ allprojects {
             javaParameters = true
             incremental = true
             freeCompilerArgs = listOf("-Xdisable-default-scripting-plugin", "-Xjsr305=strict", "-Xjvm-default=enable")
+        }
+    }
+
+    configure<IdeaModel> {
+        module {
+            // if you hate browsing Javadoc
+            isDownloadJavadoc = false
+
+            // and love reading sources :)
+            isDownloadSources = true
         }
     }
 

@@ -58,6 +58,8 @@ object Deps {
 
     val springBoot2Starter = "org.springframework.boot:spring-boot-starter"
     val springBoot2WebStarter = "org.springframework.boot:spring-boot-starter-web"
+    val springBoot2WebFluxStarter = "org.springframework.boot:spring-boot-starter-webflux"
+    val reactorTest = "io.projectreactor:reactor-test"
     val springBoot2TestStarter = "org.springframework.boot:spring-boot-starter-test"
     val springBoot1Starter = "org.springframework.boot:spring-boot-starter:$springBoot1Version"
     val springBoot1WebStarter = "org.springframework.boot:spring-boot-starter-web:$springBoot1Version"

@@ -1,3 +1,7 @@
 spring:
   application:
     name: "Antonel"
+
+server:
+  servlet:
+    context-path: /events
