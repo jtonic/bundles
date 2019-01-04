@@ -3,7 +3,7 @@ object Versions {
 
     val projectVersion = "0.0.1-SNAPSHOT"
 
-    val gradleVersion = "5.0"
+    val gradleVersion = "5.1"
 
     val kotlinVersion = "1.3.10"
     val kotlinLanguageVersion = "1.3"
@@ -11,6 +11,7 @@ object Versions {
     val kotlinJvmTarget = "1.8"
     val kotlinCoroutinesVersion = "1.0.1"
     val jacksonModuleKotlinVersion = "2.9.4.1"
+    val jacksonDatabindVersion = "2.9.7"
 
     val kotlinTestVersion = "3.1.10"
     val koinVersion = "1.0.2"

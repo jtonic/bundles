@@ -8,4 +8,5 @@ application {
 
 dependencies {
     testCompile(project(":tutorials:kt:model"))
+    compile(Deps.jacksonDatabind)
 }

@@ -48,8 +48,8 @@ dependencies {
     compile(Deps.springCloudFeignStarter)
     compile(Deps.springCloudRibbonStarter)
     compile(Deps.jacksonModuleKotlin)
+    compile(Deps.jacksonDatabind)
     compile(Deps.aopAliance)
-
 
     testCompile(Deps.springBoot1TestStarter)
     testCompile(Deps.junit)

@@ -3,6 +3,7 @@ import Versions.arrowVersion
 import Versions.controlsfxVersion
 import Versions.fuelVersion
 import Versions.httpClientVersion
+import Versions.jacksonDatabindVersion
 import Versions.jacksonModuleKotlinVersion
 import Versions.junitVersion
 import Versions.koinVersion
@@ -47,6 +48,8 @@ object Deps {
     val controlFx = "org.controlsfx:controlsfx:$controlsfxVersion"
     val koin = "org.koin:koin-core:$koinVersion"
     val jacksonModuleKotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion"
+
+    val jacksonDatabind = "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
 
     val fuel = "com.github.kittinunf.fuel:fuel:$fuelVersion"
     val fuelCoroutines = "com.github.kittinunf.fuel:fuel-coroutines:$fuelVersion"
